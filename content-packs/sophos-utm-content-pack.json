@@ -1,0 +1,4677 @@
+{
+  "v": "1",
+  "id": "d70ed7f5-d921-41f9-bd39-35578912b9b9",
+  "rev": 2,
+  "name": "William Content Pack",
+  "summary": "My stuff",
+  "description": "",
+  "vendor": "William Trelawny",
+  "url": "",
+  "parameters": [],
+  "entities": [
+    {
+      "v": "1",
+      "type": {
+        "name": "dashboard",
+        "version": "2"
+      },
+      "id": "a066f105-d417-4816-8955-68cf684a0520",
+      "data": {
+        "summary": {
+          "@type": "string",
+          "@value": "A deep dive into the Weekly Executive Report sent by Sophos UTM."
+        },
+        "search": {
+          "queries": [
+            {
+              "id": "84c5a03d-6af1-49d0-9f6e-2589acc622ec",
+              "timerange": {
+                "type": "keyword",
+                "keyword": "last monday midnight to today midnight",
+                "timezone": "Etc/UTC"
+              },
+              "filter": {
+                "type": "or",
+                "filters": [
+                  {
+                    "type": "stream",
+                    "id": "166171b0-203b-4067-94de-12cc3c2909b5"
+                  }
+                ]
+              },
+              "query": {
+                "type": "elasticsearch",
+                "query_string": ""
+              },
+              "search_types": [
+                {
+                  "query": {
+                    "type": "elasticsearch",
+                    "query_string": "NOT sophos_utm_log_id:0003 AND NOT event_action:pass"
+                  },
+                  "name": "chart",
+                  "timerange": {
+                    "type": "keyword",
+                    "keyword": "last monday midnight to today midnight",
+                    "timezone": "Etc/UTC"
+                  },
+                  "streams": [
+                    "166171b0-203b-4067-94de-12cc3c2909b5"
+                  ],
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "count()",
+                      "field": null
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [
+                    {
+                      "type": "time",
+                      "field": "timestamp",
+                      "interval": {
+                        "type": "auto",
+                        "scaling": 1
+                      }
+                    }
+                  ],
+                  "type": "pivot",
+                  "id": "c1b4a025-6ed9-4816-bfbb-9074052ebd65",
+                  "column_groups": [],
+                  "sort": []
+                },
+                {
+                  "query": null,
+                  "name": "chart",
+                  "timerange": {
+                    "type": "relative",
+                    "range": 300
+                  },
+                  "streams": [],
+                  "series": [],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [
+                    {
+                      "type": "values",
+                      "field": "source_ip",
+                      "limit": 15
+                    },
+                    {
+                      "type": "values",
+                      "field": "source_host",
+                      "limit": 15
+                    }
+                  ],
+                  "type": "pivot",
+                  "id": "39a0d3e9-a809-4627-9027-4ba434510c21",
+                  "column_groups": [],
+                  "sort": []
+                },
+                {
+                  "query": {
+                    "type": "elasticsearch",
+                    "query_string": "NOT sophos_utm_log_id:0003 AND NOT event_action:pass"
+                  },
+                  "name": null,
+                  "timerange": {
+                    "type": "keyword",
+                    "keyword": "last monday midnight to today midnight",
+                    "timezone": "Etc/UTC"
+                  },
+                  "offset": 0,
+                  "streams": [
+                    "166171b0-203b-4067-94de-12cc3c2909b5"
+                  ],
+                  "filter": null,
+                  "decorators": [],
+                  "type": "messages",
+                  "id": "a1a619bc-546d-4f65-8807-bf2985ea39d2",
+                  "limit": 150
+                },
+                {
+                  "query": {
+                    "type": "elasticsearch",
+                    "query_string": ""
+                  },
+                  "name": "chart",
+                  "timerange": {
+                    "type": "keyword",
+                    "keyword": "last monday midnight to today midnight",
+                    "timezone": "Etc/UTC"
+                  },
+                  "streams": [],
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "Count",
+                      "field": "sophos_utm_site_category"
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [
+                    {
+                      "type": "values",
+                      "field": "sophos_utm_site_category",
+                      "limit": 100
+                    }
+                  ],
+                  "type": "pivot",
+                  "id": "c494dc8d-f7dd-49c5-8346-87901375a4f8",
+                  "column_groups": [],
+                  "sort": [
+                    {
+                      "type": "series",
+                      "field": "count(sophos_utm_site_category)",
+                      "direction": "Descending"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "parameters": [],
+          "requires": {},
+          "owner": "admin",
+          "created_at": "2021-11-01T13:40:22.294Z"
+        },
+        "created_at": "2021-11-01T13:05:03.949Z",
+        "requires": {},
+        "state": {
+          "84c5a03d-6af1-49d0-9f6e-2589acc622ec": {
+            "selected_fields": null,
+            "static_message_list_id": null,
+            "titles": {
+              "widget": {
+                "53351ce4-9136-4244-b627-7df13def1b81": "Blocked Traffic Volume",
+                "50851a76-2573-48b3-b9df-6be53678323d": "Blocked Traffic Logs",
+                "885a25ae-97ba-41ef-b0c4-fabed5e8e1bf": "Top Blocked Site Categories",
+                "41007494-00b0-405f-b876-ee63268b8d3e": "Top Blocked Categories",
+                "34f33a94-b3b0-4671-928a-66bcf8fb2c4b": "Aggregating count(sophos_utm_site_category) by source_host, source_ip"
+              }
+            },
+            "widgets": [
+              {
+                "id": "53351ce4-9136-4244-b627-7df13def1b81",
+                "type": "aggregation",
+                "filter": null,
+                "timerange": {
+                  "type": "keyword",
+                  "keyword": "last monday midnight to today midnight",
+                  "timezone": "Etc/UTC"
+                },
+                "query": {
+                  "type": "elasticsearch",
+                  "query_string": "NOT sophos_utm_log_id:0003 AND NOT event_action:pass"
+                },
+                "streams": [
+                  "166171b0-203b-4067-94de-12cc3c2909b5"
+                ],
+                "config": {
+                  "visualization": "bar",
+                  "event_annotation": false,
+                  "row_pivots": [
+                    {
+                      "field": "timestamp",
+                      "type": "time",
+                      "config": {
+                        "interval": {
+                          "type": "auto",
+                          "scaling": 1
+                        }
+                      }
+                    }
+                  ],
+                  "series": [
+                    {
+                      "config": {
+                        "name": null
+                      },
+                      "function": "count()"
+                    }
+                  ],
+                  "rollup": true,
+                  "column_pivots": [],
+                  "visualization_config": null,
+                  "formatting_settings": null,
+                  "sort": []
+                }
+              },
+              {
+                "id": "50851a76-2573-48b3-b9df-6be53678323d",
+                "type": "messages",
+                "filter": null,
+                "timerange": {
+                  "type": "keyword",
+                  "keyword": "last monday midnight to today midnight",
+                  "timezone": "Etc/UTC"
+                },
+                "query": {
+                  "type": "elasticsearch",
+                  "query_string": "NOT sophos_utm_log_id:0003 AND NOT event_action:pass"
+                },
+                "streams": [
+                  "166171b0-203b-4067-94de-12cc3c2909b5"
+                ],
+                "config": {
+                  "fields": [
+                    "timestamp",
+                    "source"
+                  ],
+                  "show_message_row": true,
+                  "show_summary": null,
+                  "decorators": [],
+                  "sort": [
+                    {
+                      "type": "pivot",
+                      "field": "timestamp",
+                      "direction": "Descending"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "db10c1f0-7faa-4f9d-b8e2-108ef23448ba",
+                "type": "aggregation",
+                "filter": null,
+                "timerange": {
+                  "type": "relative",
+                  "range": 300
+                },
+                "query": null,
+                "streams": [],
+                "config": {
+                  "visualization": "table",
+                  "event_annotation": false,
+                  "row_pivots": [
+                    {
+                      "field": "source_ip",
+                      "type": "values",
+                      "config": {
+                        "limit": 15
+                      }
+                    },
+                    {
+                      "field": "source_host",
+                      "type": "values",
+                      "config": {
+                        "limit": 15
+                      }
+                    }
+                  ],
+                  "series": [],
+                  "rollup": true,
+                  "column_pivots": [],
+                  "visualization_config": null,
+                  "formatting_settings": null,
+                  "sort": []
+                }
+              },
+              {
+                "id": "41007494-00b0-405f-b876-ee63268b8d3e",
+                "type": "aggregation",
+                "filter": null,
+                "timerange": {
+                  "type": "keyword",
+                  "keyword": "last monday midnight to today midnight",
+                  "timezone": "Etc/UTC"
+                },
+                "query": {
+                  "type": "elasticsearch",
+                  "query_string": ""
+                },
+                "streams": [],
+                "config": {
+                  "visualization": "table",
+                  "event_annotation": false,
+                  "row_pivots": [
+                    {
+                      "field": "sophos_utm_site_category",
+                      "type": "values",
+                      "config": {
+                        "limit": 100
+                      }
+                    }
+                  ],
+                  "series": [
+                    {
+                      "config": {
+                        "name": "Count"
+                      },
+                      "function": "count(sophos_utm_site_category)"
+                    }
+                  ],
+                  "rollup": true,
+                  "column_pivots": [],
+                  "visualization_config": null,
+                  "formatting_settings": null,
+                  "sort": [
+                    {
+                      "type": "series",
+                      "field": "count(sophos_utm_site_category)",
+                      "direction": "Descending"
+                    }
+                  ]
+                }
+              }
+            ],
+            "widget_mapping": {
+              "41007494-00b0-405f-b876-ee63268b8d3e": [
+                "c494dc8d-f7dd-49c5-8346-87901375a4f8"
+              ],
+              "50851a76-2573-48b3-b9df-6be53678323d": [
+                "a1a619bc-546d-4f65-8807-bf2985ea39d2"
+              ],
+              "53351ce4-9136-4244-b627-7df13def1b81": [
+                "c1b4a025-6ed9-4816-bfbb-9074052ebd65"
+              ],
+              "db10c1f0-7faa-4f9d-b8e2-108ef23448ba": [
+                "39a0d3e9-a809-4627-9027-4ba434510c21"
+              ]
+            },
+            "positions": {
+              "41007494-00b0-405f-b876-ee63268b8d3e": {
+                "col": 1,
+                "row": 8,
+                "height": 6,
+                "width": 4
+              },
+              "50851a76-2573-48b3-b9df-6be53678323d": {
+                "col": 1,
+                "row": 14,
+                "height": 6,
+                "width": "Infinity"
+              },
+              "53351ce4-9136-4244-b627-7df13def1b81": {
+                "col": 1,
+                "row": 6,
+                "height": 2,
+                "width": "Infinity"
+              },
+              "db10c1f0-7faa-4f9d-b8e2-108ef23448ba": {
+                "col": 5,
+                "row": 9,
+                "height": 4,
+                "width": 4
+              }
+            },
+            "formatting": {
+              "highlighting": []
+            },
+            "display_mode_settings": {
+              "positions": {}
+            }
+          }
+        },
+        "properties": [],
+        "owner": "admin",
+        "title": {
+          "@type": "string",
+          "@value": "Weekly Executive Report"
+        },
+        "type": "DASHBOARD",
+        "description": {
+          "@type": "string",
+          "@value": ""
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "dashboard",
+        "version": "2"
+      },
+      "id": "1b06a27d-956f-46ca-b167-8fa21384f903",
+      "data": {
+        "summary": {
+          "@type": "string",
+          "@value": ""
+        },
+        "search": {
+          "queries": [
+            {
+              "id": "a1fb5ed8-ee52-4b38-a6d3-2f2fa10d5862",
+              "timerange": {
+                "type": "relative",
+                "range": 300
+              },
+              "query": {
+                "type": "elasticsearch",
+                "query_string": ""
+              },
+              "search_types": [
+                {
+                  "query": {
+                    "type": "elasticsearch",
+                    "query_string": "event_action:(drop OR reject OR block)"
+                  },
+                  "name": "trend",
+                  "timerange": {
+                    "type": "offset",
+                    "source": "search_type",
+                    "id": "5e21513d-315f-49ad-9f10-be35c24d209e",
+                    "offset": "1i"
+                  },
+                  "streams": [
+                    "69aac049-f4f0-44d2-b8ea-4fe8534d8962",
+                    "166171b0-203b-4067-94de-12cc3c2909b5"
+                  ],
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "Message Count",
+                      "field": null
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [],
+                  "type": "pivot",
+                  "id": "8049fa62-2c87-46b5-82b9-a5ef0505990c",
+                  "column_groups": [],
+                  "sort": []
+                },
+                {
+                  "query": {
+                    "type": "elasticsearch",
+                    "query_string": "event_action:(pass OR accept)"
+                  },
+                  "name": "trend",
+                  "timerange": {
+                    "type": "offset",
+                    "source": "search_type",
+                    "id": "0b6429fb-6679-4fda-80f0-8aba1a511321",
+                    "offset": "1i"
+                  },
+                  "streams": [
+                    "69aac049-f4f0-44d2-b8ea-4fe8534d8962",
+                    "166171b0-203b-4067-94de-12cc3c2909b5"
+                  ],
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "Message Count",
+                      "field": null
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [],
+                  "type": "pivot",
+                  "id": "bc133197-75bf-4e43-8271-b0de0272e5ec",
+                  "column_groups": [],
+                  "sort": []
+                },
+                {
+                  "query": {
+                    "type": "elasticsearch",
+                    "query_string": ""
+                  },
+                  "name": "chart",
+                  "timerange": {
+                    "type": "relative",
+                    "range": 900
+                  },
+                  "streams": [],
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "count()",
+                      "field": null
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [
+                    {
+                      "type": "values",
+                      "field": "rule_id",
+                      "limit": 15
+                    }
+                  ],
+                  "type": "pivot",
+                  "id": "763d56ff-83d1-4c91-9080-94377c106130",
+                  "column_groups": [],
+                  "sort": [
+                    {
+                      "type": "series",
+                      "field": "count()",
+                      "direction": "Descending"
+                    }
+                  ]
+                },
+                {
+                  "query": {
+                    "type": "elasticsearch",
+                    "query_string": "event_action:(pass OR accept)"
+                  },
+                  "name": "chart",
+                  "timerange": {
+                    "type": "relative",
+                    "range": 3600
+                  },
+                  "streams": [
+                    "69aac049-f4f0-44d2-b8ea-4fe8534d8962",
+                    "166171b0-203b-4067-94de-12cc3c2909b5"
+                  ],
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "Message Count",
+                      "field": null
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [],
+                  "type": "pivot",
+                  "id": "0b6429fb-6679-4fda-80f0-8aba1a511321",
+                  "column_groups": [],
+                  "sort": []
+                },
+                {
+                  "query": {
+                    "type": "elasticsearch",
+                    "query_string": "event_action:(drop OR reject OR block)"
+                  },
+                  "name": "chart",
+                  "timerange": {
+                    "type": "relative",
+                    "range": 3600
+                  },
+                  "streams": [
+                    "69aac049-f4f0-44d2-b8ea-4fe8534d8962",
+                    "166171b0-203b-4067-94de-12cc3c2909b5"
+                  ],
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "Message Count",
+                      "field": null
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [],
+                  "type": "pivot",
+                  "id": "5e21513d-315f-49ad-9f10-be35c24d209e",
+                  "column_groups": [],
+                  "sort": []
+                }
+              ]
+            },
+            {
+              "id": "e640ac80-d506-40fb-9249-7aa023a0dba7",
+              "timerange": {
+                "type": "relative",
+                "range": 300
+              },
+              "query": {
+                "type": "elasticsearch",
+                "query_string": ""
+              },
+              "search_types": []
+            },
+            {
+              "id": "42c3fcd6-521a-4d2f-8359-f7c19d3d5bef",
+              "timerange": {
+                "type": "relative",
+                "range": 300
+              },
+              "query": {
+                "type": "elasticsearch",
+                "query_string": ""
+              },
+              "search_types": [
+                {
+                  "query": {
+                    "type": "elasticsearch",
+                    "query_string": ""
+                  },
+                  "name": "trend",
+                  "timerange": {
+                    "type": "offset",
+                    "source": "search_type",
+                    "id": "c5b70b33-c134-4755-94a6-005b462b92c6",
+                    "offset": "1i"
+                  },
+                  "streams": [
+                    "69aac049-f4f0-44d2-b8ea-4fe8534d8962",
+                    "166171b0-203b-4067-94de-12cc3c2909b5"
+                  ],
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "Message Count",
+                      "field": null
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [],
+                  "type": "pivot",
+                  "id": "6112838d-2392-40e2-9613-ad94c89bd371",
+                  "column_groups": [],
+                  "sort": []
+                },
+                {
+                  "query": {
+                    "type": "elasticsearch",
+                    "query_string": "destination_ip:204.111.190.24 AND NOT source_ip:(9.9.9.9 OR 149.112.112.112)"
+                  },
+                  "name": "chart",
+                  "timerange": {
+                    "type": "relative",
+                    "range": 3600
+                  },
+                  "streams": [
+                    "69aac049-f4f0-44d2-b8ea-4fe8534d8962"
+                  ],
+                  "series": [],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [
+                    {
+                      "type": "values",
+                      "field": "source_ip",
+                      "limit": 15
+                    },
+                    {
+                      "type": "values",
+                      "field": "destination_port",
+                      "limit": 15
+                    },
+                    {
+                      "type": "values",
+                      "field": "event_action",
+                      "limit": 15
+                    }
+                  ],
+                  "type": "pivot",
+                  "id": "50c59225-25db-43d0-90da-e25179880be0",
+                  "column_groups": [],
+                  "sort": [
+                    {
+                      "type": "pivot",
+                      "field": "source_ip",
+                      "direction": "Ascending"
+                    }
+                  ]
+                },
+                {
+                  "query": {
+                    "type": "elasticsearch",
+                    "query_string": "event_action:\"DNS request\""
+                  },
+                  "name": "trend",
+                  "timerange": {
+                    "type": "offset",
+                    "source": "search_type",
+                    "id": "01b4e93c-791f-4fd0-bea8-6536e467a8ce",
+                    "offset": "1i"
+                  },
+                  "streams": [
+                    "69aac049-f4f0-44d2-b8ea-4fe8534d8962",
+                    "166171b0-203b-4067-94de-12cc3c2909b5"
+                  ],
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "Message Count",
+                      "field": null
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [],
+                  "type": "pivot",
+                  "id": "6c50317b-0b74-4459-90c3-3f97d6dac095",
+                  "column_groups": [],
+                  "sort": []
+                },
+                {
+                  "query": null,
+                  "name": "chart",
+                  "timerange": {
+                    "type": "relative",
+                    "range": 300
+                  },
+                  "streams": [],
+                  "series": [],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [],
+                  "type": "pivot",
+                  "id": "c1acdc03-4d92-4dd2-8252-6dd01be13880",
+                  "column_groups": [],
+                  "sort": []
+                },
+                {
+                  "query": {
+                    "type": "elasticsearch",
+                    "query_string": "event_action:\"DNS request\""
+                  },
+                  "name": "chart",
+                  "timerange": {
+                    "type": "relative",
+                    "range": 3600
+                  },
+                  "streams": [
+                    "69aac049-f4f0-44d2-b8ea-4fe8534d8962",
+                    "166171b0-203b-4067-94de-12cc3c2909b5"
+                  ],
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "Message Count",
+                      "field": null
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [],
+                  "type": "pivot",
+                  "id": "01b4e93c-791f-4fd0-bea8-6536e467a8ce",
+                  "column_groups": [],
+                  "sort": []
+                },
+                {
+                  "query": {
+                    "type": "elasticsearch",
+                    "query_string": ""
+                  },
+                  "name": "chart",
+                  "timerange": {
+                    "type": "relative",
+                    "range": 3600
+                  },
+                  "streams": [
+                    "69aac049-f4f0-44d2-b8ea-4fe8534d8962",
+                    "166171b0-203b-4067-94de-12cc3c2909b5"
+                  ],
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "Message Count",
+                      "field": null
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [],
+                  "type": "pivot",
+                  "id": "c5b70b33-c134-4755-94a6-005b462b92c6",
+                  "column_groups": [],
+                  "sort": []
+                }
+              ]
+            },
+            {
+              "id": "410e7e1e-9b42-4ed0-a414-49dd2e059c6b",
+              "timerange": {
+                "type": "relative",
+                "range": 300
+              },
+              "query": {
+                "type": "elasticsearch",
+                "query_string": ""
+              },
+              "search_types": []
+            }
+          ],
+          "parameters": [],
+          "requires": {},
+          "owner": "admin",
+          "created_at": "2021-10-18T12:16:47.659Z"
+        },
+        "created_at": "2021-10-14T00:26:45.481Z",
+        "requires": {},
+        "state": {
+          "42c3fcd6-521a-4d2f-8359-f7c19d3d5bef": {
+            "selected_fields": null,
+            "static_message_list_id": null,
+            "titles": {
+              "widget": {
+                "9ccab96f-df3d-49b4-805e-bd9e9456c595": "Total Traffic 1hr",
+                "6a47b063-b954-40b8-a4f5-91211231d402": "DNS Traffic 1hr (copy)",
+                "8c279627-b200-41c4-add3-2f8eb5b5cf8b": "Top Activity Inbound WAN",
+                "174e688a-5b2d-41c0-b8a4-9d055d5e5e43": "DNS Traffic 1hr"
+              },
+              "tab": {
+                "title": "Net Flow"
+              }
+            },
+            "widgets": [
+              {
+                "id": "8c279627-b200-41c4-add3-2f8eb5b5cf8b",
+                "type": "aggregation",
+                "filter": null,
+                "timerange": {
+                  "type": "relative",
+                  "range": 3600
+                },
+                "query": {
+                  "type": "elasticsearch",
+                  "query_string": "destination_ip:204.111.190.24 AND NOT source_ip:(9.9.9.9 OR 149.112.112.112)"
+                },
+                "streams": [
+                  "69aac049-f4f0-44d2-b8ea-4fe8534d8962"
+                ],
+                "config": {
+                  "visualization": "table",
+                  "event_annotation": false,
+                  "row_pivots": [
+                    {
+                      "field": "source_ip",
+                      "type": "values",
+                      "config": {
+                        "limit": 15
+                      }
+                    },
+                    {
+                      "field": "destination_port",
+                      "type": "values",
+                      "config": {
+                        "limit": 15
+                      }
+                    },
+                    {
+                      "field": "event_action",
+                      "type": "values",
+                      "config": {
+                        "limit": 15
+                      }
+                    }
+                  ],
+                  "series": [],
+                  "rollup": true,
+                  "column_pivots": [],
+                  "visualization_config": null,
+                  "formatting_settings": null,
+                  "sort": [
+                    {
+                      "type": "pivot",
+                      "field": "source_ip",
+                      "direction": "Ascending"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "c9dd8438-e68e-49cc-a469-a22b376fba55",
+                "type": "aggregation",
+                "filter": null,
+                "timerange": {
+                  "type": "relative",
+                  "range": 300
+                },
+                "query": null,
+                "streams": [],
+                "config": {
+                  "visualization": "table",
+                  "event_annotation": false,
+                  "row_pivots": [],
+                  "series": [],
+                  "rollup": true,
+                  "column_pivots": [],
+                  "visualization_config": null,
+                  "formatting_settings": null,
+                  "sort": []
+                }
+              },
+              {
+                "id": "174e688a-5b2d-41c0-b8a4-9d055d5e5e43",
+                "type": "aggregation",
+                "filter": null,
+                "timerange": {
+                  "type": "relative",
+                  "range": 3600
+                },
+                "query": {
+                  "type": "elasticsearch",
+                  "query_string": "event_action:\"DNS request\""
+                },
+                "streams": [
+                  "69aac049-f4f0-44d2-b8ea-4fe8534d8962",
+                  "166171b0-203b-4067-94de-12cc3c2909b5"
+                ],
+                "config": {
+                  "visualization": "numeric",
+                  "event_annotation": false,
+                  "row_pivots": [],
+                  "series": [
+                    {
+                      "config": {
+                        "name": "Message Count"
+                      },
+                      "function": "count()"
+                    }
+                  ],
+                  "rollup": true,
+                  "column_pivots": [],
+                  "visualization_config": {
+                    "trend": true,
+                    "trend_preference": "NEUTRAL"
+                  },
+                  "formatting_settings": null,
+                  "sort": []
+                }
+              },
+              {
+                "id": "9ccab96f-df3d-49b4-805e-bd9e9456c595",
+                "type": "aggregation",
+                "filter": null,
+                "timerange": {
+                  "type": "relative",
+                  "range": 3600
+                },
+                "query": {
+                  "type": "elasticsearch",
+                  "query_string": ""
+                },
+                "streams": [
+                  "69aac049-f4f0-44d2-b8ea-4fe8534d8962",
+                  "166171b0-203b-4067-94de-12cc3c2909b5"
+                ],
+                "config": {
+                  "visualization": "numeric",
+                  "event_annotation": false,
+                  "row_pivots": [],
+                  "series": [
+                    {
+                      "config": {
+                        "name": "Message Count"
+                      },
+                      "function": "count()"
+                    }
+                  ],
+                  "rollup": true,
+                  "column_pivots": [],
+                  "visualization_config": {
+                    "trend": true,
+                    "trend_preference": "NEUTRAL"
+                  },
+                  "formatting_settings": null,
+                  "sort": []
+                }
+              }
+            ],
+            "widget_mapping": {
+              "9ccab96f-df3d-49b4-805e-bd9e9456c595": [
+                "c5b70b33-c134-4755-94a6-005b462b92c6",
+                "6112838d-2392-40e2-9613-ad94c89bd371"
+              ],
+              "8c279627-b200-41c4-add3-2f8eb5b5cf8b": [
+                "50c59225-25db-43d0-90da-e25179880be0"
+              ],
+              "174e688a-5b2d-41c0-b8a4-9d055d5e5e43": [
+                "6c50317b-0b74-4459-90c3-3f97d6dac095",
+                "01b4e93c-791f-4fd0-bea8-6536e467a8ce"
+              ],
+              "c9dd8438-e68e-49cc-a469-a22b376fba55": [
+                "c1acdc03-4d92-4dd2-8252-6dd01be13880"
+              ]
+            },
+            "positions": {
+              "9ccab96f-df3d-49b4-805e-bd9e9456c595": {
+                "col": 1,
+                "row": 2,
+                "height": 2,
+                "width": 2
+              },
+              "8c279627-b200-41c4-add3-2f8eb5b5cf8b": {
+                "col": 9,
+                "row": 2,
+                "height": 7,
+                "width": 4
+              },
+              "174e688a-5b2d-41c0-b8a4-9d055d5e5e43": {
+                "col": 1,
+                "row": 4,
+                "height": 2,
+                "width": 2
+              },
+              "c9dd8438-e68e-49cc-a469-a22b376fba55": {
+                "col": 3,
+                "row": 2,
+                "height": 4,
+                "width": 4
+              }
+            },
+            "formatting": {
+              "highlighting": []
+            },
+            "display_mode_settings": {
+              "positions": {}
+            }
+          },
+          "a1fb5ed8-ee52-4b38-a6d3-2f2fa10d5862": {
+            "selected_fields": null,
+            "static_message_list_id": null,
+            "titles": {
+              "tab": {
+                "title": "Firewall"
+              },
+              "widget": {
+                "ffc4be30-7dbb-4b77-8096-40999001e860": "Allowed Traffic 1hr",
+                "65d3a6ab-b89b-42a5-b194-544a48dbea7a": "Dropped Traffic 1hr",
+                "654ed060-0fe2-442d-935d-dc0405d2a8d1": "Top Rules"
+              }
+            },
+            "widgets": [
+              {
+                "id": "ffc4be30-7dbb-4b77-8096-40999001e860",
+                "type": "aggregation",
+                "filter": null,
+                "timerange": {
+                  "type": "relative",
+                  "range": 3600
+                },
+                "query": {
+                  "type": "elasticsearch",
+                  "query_string": "event_action:(pass OR accept)"
+                },
+                "streams": [
+                  "69aac049-f4f0-44d2-b8ea-4fe8534d8962",
+                  "166171b0-203b-4067-94de-12cc3c2909b5"
+                ],
+                "config": {
+                  "visualization": "numeric",
+                  "event_annotation": false,
+                  "row_pivots": [],
+                  "series": [
+                    {
+                      "config": {
+                        "name": "Message Count"
+                      },
+                      "function": "count()"
+                    }
+                  ],
+                  "rollup": true,
+                  "column_pivots": [],
+                  "visualization_config": {
+                    "trend": true,
+                    "trend_preference": "NEUTRAL"
+                  },
+                  "formatting_settings": null,
+                  "sort": []
+                }
+              },
+              {
+                "id": "65d3a6ab-b89b-42a5-b194-544a48dbea7a",
+                "type": "aggregation",
+                "filter": null,
+                "timerange": {
+                  "type": "relative",
+                  "range": 3600
+                },
+                "query": {
+                  "type": "elasticsearch",
+                  "query_string": "event_action:(drop OR reject OR block)"
+                },
+                "streams": [
+                  "69aac049-f4f0-44d2-b8ea-4fe8534d8962",
+                  "166171b0-203b-4067-94de-12cc3c2909b5"
+                ],
+                "config": {
+                  "visualization": "numeric",
+                  "event_annotation": false,
+                  "row_pivots": [],
+                  "series": [
+                    {
+                      "config": {
+                        "name": "Message Count"
+                      },
+                      "function": "count()"
+                    }
+                  ],
+                  "rollup": true,
+                  "column_pivots": [],
+                  "visualization_config": {
+                    "trend": true,
+                    "trend_preference": "NEUTRAL"
+                  },
+                  "formatting_settings": null,
+                  "sort": []
+                }
+              },
+              {
+                "id": "654ed060-0fe2-442d-935d-dc0405d2a8d1",
+                "type": "aggregation",
+                "filter": null,
+                "timerange": {
+                  "type": "relative",
+                  "range": 900
+                },
+                "query": {
+                  "type": "elasticsearch",
+                  "query_string": ""
+                },
+                "streams": [],
+                "config": {
+                  "visualization": "table",
+                  "event_annotation": false,
+                  "row_pivots": [
+                    {
+                      "field": "rule_id",
+                      "type": "values",
+                      "config": {
+                        "limit": 15
+                      }
+                    }
+                  ],
+                  "series": [
+                    {
+                      "config": {
+                        "name": null
+                      },
+                      "function": "count()"
+                    }
+                  ],
+                  "rollup": true,
+                  "column_pivots": [],
+                  "visualization_config": null,
+                  "formatting_settings": null,
+                  "sort": [
+                    {
+                      "type": "series",
+                      "field": "count()",
+                      "direction": "Descending"
+                    }
+                  ]
+                }
+              }
+            ],
+            "widget_mapping": {
+              "ffc4be30-7dbb-4b77-8096-40999001e860": [
+                "bc133197-75bf-4e43-8271-b0de0272e5ec",
+                "0b6429fb-6679-4fda-80f0-8aba1a511321"
+              ],
+              "65d3a6ab-b89b-42a5-b194-544a48dbea7a": [
+                "8049fa62-2c87-46b5-82b9-a5ef0505990c",
+                "5e21513d-315f-49ad-9f10-be35c24d209e"
+              ],
+              "654ed060-0fe2-442d-935d-dc0405d2a8d1": [
+                "763d56ff-83d1-4c91-9080-94377c106130"
+              ]
+            },
+            "positions": {
+              "ffc4be30-7dbb-4b77-8096-40999001e860": {
+                "col": 1,
+                "row": 3,
+                "height": 2,
+                "width": 2
+              },
+              "65d3a6ab-b89b-42a5-b194-544a48dbea7a": {
+                "col": 1,
+                "row": 1,
+                "height": 2,
+                "width": 2
+              },
+              "654ed060-0fe2-442d-935d-dc0405d2a8d1": {
+                "col": 3,
+                "row": 1,
+                "height": 5,
+                "width": 2
+              }
+            },
+            "formatting": null,
+            "display_mode_settings": {
+              "positions": {}
+            }
+          },
+          "e640ac80-d506-40fb-9249-7aa023a0dba7": {
+            "selected_fields": null,
+            "static_message_list_id": null,
+            "titles": {
+              "tab": {
+                "title": "Web Proxy"
+              }
+            },
+            "widgets": [],
+            "widget_mapping": {},
+            "positions": {},
+            "formatting": null,
+            "display_mode_settings": {
+              "positions": {}
+            }
+          },
+          "410e7e1e-9b42-4ed0-a414-49dd2e059c6b": {
+            "selected_fields": null,
+            "static_message_list_id": null,
+            "titles": {
+              "tab": {
+                "title": "Logging"
+              }
+            },
+            "widgets": [],
+            "widget_mapping": {},
+            "positions": {},
+            "formatting": null,
+            "display_mode_settings": {
+              "positions": {}
+            }
+          }
+        },
+        "properties": [],
+        "owner": "admin",
+        "title": {
+          "@type": "string",
+          "@value": "Security Overview"
+        },
+        "type": "DASHBOARD",
+        "description": {
+          "@type": "string",
+          "@value": ""
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "event_definition",
+        "version": "1"
+      },
+      "id": "35a8ac89-f5ad-4216-a926-dd022c1b7ef4",
+      "data": {
+        "field_spec": {},
+        "config": {
+          "type": "aggregation-v1",
+          "query": {
+            "@type": "string",
+            "@value": "event_action:drop network_direction:\"inbound_wan\" AND destination_port:<1024 "
+          },
+          "streams": [
+            "69aac049-f4f0-44d2-b8ea-4fe8534d8962"
+          ],
+          "group_by": [],
+          "series": [],
+          "conditions": {
+            "expression": null
+          },
+          "search_within_ms": 5000,
+          "execute_every_ms": 5000
+        },
+        "priority": {
+          "@type": "integer",
+          "@value": 2
+        },
+        "notifications": [],
+        "notification_settings": {
+          "grace_period_ms": 0,
+          "backlog_size": 100
+        },
+        "title": {
+          "@type": "string",
+          "@value": "Inbound Internet Blocked Traffic (Reserved Ports)"
+        },
+        "is_scheduled": {
+          "@type": "boolean",
+          "@value": true
+        },
+        "key_spec": [],
+        "storage": [
+          {
+            "type": "persist-to-streams-v1",
+            "streams": [
+              "000000000000000000000002"
+            ]
+          }
+        ],
+        "alert": {
+          "@type": "boolean",
+          "@value": true
+        },
+        "description": {
+          "@type": "string",
+          "@value": "Alert on blocked Internet traffic attempting to connect to Sophos WAN over reserved ports (<=1024)."
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "event_definition",
+        "version": "1"
+      },
+      "id": "ba8885c5-89db-48f7-8cd3-fba17a83fed6",
+      "data": {
+        "field_spec": {},
+        "config": {
+          "type": "aggregation-v1",
+          "query": {
+            "@type": "string",
+            "@value": "event_action:drop network_direction:\"inbound_wan\" AND destination_port:>1024 "
+          },
+          "streams": [
+            "69aac049-f4f0-44d2-b8ea-4fe8534d8962"
+          ],
+          "group_by": [],
+          "series": [],
+          "conditions": {
+            "expression": null
+          },
+          "search_within_ms": 60000,
+          "execute_every_ms": 60000
+        },
+        "priority": {
+          "@type": "integer",
+          "@value": 1
+        },
+        "notifications": [],
+        "notification_settings": {
+          "grace_period_ms": 0,
+          "backlog_size": 100
+        },
+        "title": {
+          "@type": "string",
+          "@value": "Inbound Internet Blocked Traffic (Random High Ports)"
+        },
+        "is_scheduled": {
+          "@type": "boolean",
+          "@value": true
+        },
+        "key_spec": [],
+        "storage": [
+          {
+            "type": "persist-to-streams-v1",
+            "streams": [
+              "000000000000000000000002"
+            ]
+          }
+        ],
+        "alert": {
+          "@type": "boolean",
+          "@value": false
+        },
+        "description": {
+          "@type": "string",
+          "@value": "Alert on blocked Internet traffic attempting to connect to Sophos WAN over random high ports (>1024)."
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "lookup_adapter",
+        "version": "1"
+      },
+      "id": "e7d2e610-30c4-4073-bc0a-96df95e44688",
+      "data": {
+        "name": {
+          "@type": "string",
+          "@value": "iana-ip-protocol-numbers-lookup-adapter"
+        },
+        "title": {
+          "@type": "string",
+          "@value": "IANA IP Protocol Numbers Lookup Adapter"
+        },
+        "description": {
+          "@type": "string",
+          "@value": "https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml"
+        },
+        "configuration": {
+          "type": {
+            "@type": "string",
+            "@value": "csvfile"
+          },
+          "path": {
+            "@type": "string",
+            "@value": "/etc/graylog/lookup-tables/iana-ip-protocol-numbers.csv"
+          },
+          "separator": {
+            "@type": "string",
+            "@value": ","
+          },
+          "quotechar": {
+            "@type": "string",
+            "@value": "\""
+          },
+          "key_column": {
+            "@type": "string",
+            "@value": "key"
+          },
+          "value_column": {
+            "@type": "string",
+            "@value": "value"
+          },
+          "check_interval": {
+            "@type": "long",
+            "@value": 86400
+          },
+          "case_insensitive_lookup": {
+            "@type": "boolean",
+            "@value": true
+          }
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "lookup_adapter",
+        "version": "1"
+      },
+      "id": "1a11e9ee-9b73-4148-9ebc-7d7026ca963c",
+      "data": {
+        "name": {
+          "@type": "string",
+          "@value": "geolite2-city-data-adapter"
+        },
+        "title": {
+          "@type": "string",
+          "@value": "GeoLite2 City Data Adapter"
+        },
+        "description": {
+          "@type": "string",
+          "@value": "Maxmind GeoLite2 City database"
+        },
+        "configuration": {
+          "type": {
+            "@type": "string",
+            "@value": "maxmind_geoip"
+          },
+          "path": {
+            "@type": "string",
+            "@value": "/usr/share/GeoIP/GeoLite2-City.mmdb"
+          },
+          "database_type": {
+            "@type": "string",
+            "@value": "MAXMIND_CITY"
+          },
+          "check_interval": {
+            "@type": "long",
+            "@value": 1
+          },
+          "check_interval_unit": {
+            "@type": "string",
+            "@value": "DAYS"
+          }
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "lookup_adapter",
+        "version": "1"
+      },
+      "id": "0efb30ff-9eee-4309-8f82-e599146bc69b",
+      "data": {
+        "name": {
+          "@type": "string",
+          "@value": "sophos-network-names"
+        },
+        "title": {
+          "@type": "string",
+          "@value": "Sophos Network Names"
+        },
+        "description": {
+          "@type": "string",
+          "@value": "Friendly names of Sophos' networks"
+        },
+        "configuration": {
+          "type": {
+            "@type": "string",
+            "@value": "csvfile"
+          },
+          "path": {
+            "@type": "string",
+            "@value": "/etc/graylog/lookup-tables/sophos-network-names.csv"
+          },
+          "separator": {
+            "@type": "string",
+            "@value": ","
+          },
+          "quotechar": {
+            "@type": "string",
+            "@value": "\""
+          },
+          "key_column": {
+            "@type": "string",
+            "@value": "key"
+          },
+          "value_column": {
+            "@type": "string",
+            "@value": "value"
+          },
+          "check_interval": {
+            "@type": "long",
+            "@value": 3600
+          },
+          "case_insensitive_lookup": {
+            "@type": "boolean",
+            "@value": true
+          }
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "lookup_adapter",
+        "version": "1"
+      },
+      "id": "1f5c591b-155f-44c6-957d-73b7fc616b4c",
+      "data": {
+        "name": {
+          "@type": "string",
+          "@value": "tor-exit-node-data-adapter"
+        },
+        "title": {
+          "@type": "string",
+          "@value": "Tor Exit Node Data Adapter"
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        },
+        "configuration": {
+          "type": {
+            "@type": "string",
+            "@value": "torexitnode"
+          }
+        }
+      },
+      "constraints": [
+        {
+          "type": "plugin-version",
+          "plugin": "org.graylog.plugins.threatintel.ThreatIntelPlugin",
+          "version": ">=4.2.0"
+        },
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "lookup_adapter",
+        "version": "1"
+      },
+      "id": "f845f5fb-1d74-4c2a-9275-7734887ee1c2",
+      "data": {
+        "name": {
+          "@type": "string",
+          "@value": "geolite2-country-data-adapter"
+        },
+        "title": {
+          "@type": "string",
+          "@value": "GeoLite2 Country Data Adapter"
+        },
+        "description": {
+          "@type": "string",
+          "@value": "Maxmind GeoLite2 Country database"
+        },
+        "configuration": {
+          "type": {
+            "@type": "string",
+            "@value": "maxmind_geoip"
+          },
+          "path": {
+            "@type": "string",
+            "@value": "/usr/share/GeoIP/GeoLite2-Country.mmdb"
+          },
+          "database_type": {
+            "@type": "string",
+            "@value": "MAXMIND_COUNTRY"
+          },
+          "check_interval": {
+            "@type": "long",
+            "@value": 1
+          },
+          "check_interval_unit": {
+            "@type": "string",
+            "@value": "DAYS"
+          }
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "lookup_adapter",
+        "version": "1"
+      },
+      "id": "bb4715de-46d3-46a7-bb4d-faea14a38852",
+      "data": {
+        "name": {
+          "@type": "string",
+          "@value": "reverse-dns-lookup-pihole"
+        },
+        "title": {
+          "@type": "string",
+          "@value": "Reverse DNS Lookup pihole"
+        },
+        "description": {
+          "@type": "string",
+          "@value": "Queries pihole for DNS lookup"
+        },
+        "configuration": {
+          "type": {
+            "@type": "string",
+            "@value": "dnslookup"
+          },
+          "lookup_type": {
+            "@type": "string",
+            "@value": "PTR"
+          },
+          "server_ips": {
+            "@type": "string",
+            "@value": "10.0.0.254"
+          },
+          "request_timeout": {
+            "@type": "integer",
+            "@value": 10000
+          },
+          "cache_ttl_override_enabled": {
+            "@type": "boolean",
+            "@value": false
+          }
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "lookup_adapter",
+        "version": "1"
+      },
+      "id": "ccf6f81d-a1db-4b1f-97a7-b77b5436eaa5",
+      "data": {
+        "name": {
+          "@type": "string",
+          "@value": "alientvault-otx-ipv4-data-adapter"
+        },
+        "title": {
+          "@type": "string",
+          "@value": "AlientVault OTX IPv4 Data Adapter"
+        },
+        "description": {
+          "@type": "string",
+          "@value": "https://otx.alienvault.com/"
+        },
+        "configuration": {
+          "type": {
+            "@type": "string",
+            "@value": "otx-api"
+          },
+          "indicator": {
+            "@type": "string",
+            "@value": "IPAutoDetect"
+          },
+          "api_key": {
+            "@type": "string",
+            "@value": "ef8c0030c9f4f67d57761ba3cd86f9260e0932f986c597bf17dfc17c87c46396"
+          },
+          "api_url": {
+            "@type": "string",
+            "@value": "https://otx.alienvault.com"
+          },
+          "http_user_agent": {
+            "@type": "string",
+            "@value": "Graylog Threat Intelligence Plugin - https://github.com/Graylog2/graylog-plugin-threatintel"
+          },
+          "http_connect_timeout": {
+            "@type": "long",
+            "@value": 10000
+          },
+          "http_write_timeout": {
+            "@type": "long",
+            "@value": 10000
+          },
+          "http_read_timeout": {
+            "@type": "long",
+            "@value": 60000
+          }
+        }
+      },
+      "constraints": [
+        {
+          "type": "plugin-version",
+          "plugin": "org.graylog.plugins.threatintel.ThreatIntelPlugin",
+          "version": ">=4.2.0"
+        },
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "lookup_adapter",
+        "version": "1"
+      },
+      "id": "e956fc0f-cc94-4c39-8cd2-a8e9482fc71b",
+      "data": {
+        "name": {
+          "@type": "string",
+          "@value": "watchlist-mongo"
+        },
+        "title": {
+          "@type": "string",
+          "@value": "Watchlist (Internal - Do not remove)"
+        },
+        "description": {
+          "@type": "string",
+          "@value": "The Lookup Adapter for the Watchlist."
+        },
+        "configuration": {
+          "type": {
+            "@type": "string",
+            "@value": "mongodb"
+          }
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "lookup_adapter",
+        "version": "1"
+      },
+      "id": "cd6260b9-7eeb-4731-bd01-47fed2848b3e",
+      "data": {
+        "name": {
+          "@type": "string",
+          "@value": "iana-icmp-parameters-types"
+        },
+        "title": {
+          "@type": "string",
+          "@value": "IANA ICMP Parameters Types"
+        },
+        "description": {
+          "@type": "string",
+          "@value": "https://www.iana.org/assignments/icmp-parameters/icmp-parameters.xhtml#icmp-parameters-codes"
+        },
+        "configuration": {
+          "type": {
+            "@type": "string",
+            "@value": "csvfile"
+          },
+          "path": {
+            "@type": "string",
+            "@value": "/etc/graylog/lookup-tables/icmp-parameters-types.csv"
+          },
+          "separator": {
+            "@type": "string",
+            "@value": ","
+          },
+          "quotechar": {
+            "@type": "string",
+            "@value": "\""
+          },
+          "key_column": {
+            "@type": "string",
+            "@value": "key"
+          },
+          "value_column": {
+            "@type": "string",
+            "@value": "value"
+          },
+          "check_interval": {
+            "@type": "long",
+            "@value": 3600
+          },
+          "case_insensitive_lookup": {
+            "@type": "boolean",
+            "@value": true
+          }
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "lookup_cache",
+        "version": "1"
+      },
+      "id": "79c65324-4ad7-4d01-ab2e-d0b68286519e",
+      "data": {
+        "name": {
+          "@type": "string",
+          "@value": "geolite2-cache"
+        },
+        "title": {
+          "@type": "string",
+          "@value": "GeoLite2 Cache"
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        },
+        "configuration": {
+          "type": {
+            "@type": "string",
+            "@value": "guava_cache"
+          },
+          "max_size": {
+            "@type": "integer",
+            "@value": 1000
+          },
+          "expire_after_access": {
+            "@type": "long",
+            "@value": 0
+          },
+          "expire_after_access_unit": {
+            "@type": "string",
+            "@value": "MINUTES"
+          },
+          "expire_after_write": {
+            "@type": "long",
+            "@value": 60
+          },
+          "expire_after_write_unit": {
+            "@type": "string",
+            "@value": "MINUTES"
+          }
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "lookup_cache",
+        "version": "1"
+      },
+      "id": "6afbc81d-6e72-4fb8-8254-6f45afb31f66",
+      "data": {
+        "name": {
+          "@type": "string",
+          "@value": "sophos-network-names"
+        },
+        "title": {
+          "@type": "string",
+          "@value": "Sophos Network Names"
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        },
+        "configuration": {
+          "type": {
+            "@type": "string",
+            "@value": "guava_cache"
+          },
+          "max_size": {
+            "@type": "integer",
+            "@value": 3
+          },
+          "expire_after_access": {
+            "@type": "long",
+            "@value": 3600
+          },
+          "expire_after_access_unit": {
+            "@type": "string",
+            "@value": "SECONDS"
+          },
+          "expire_after_write": {
+            "@type": "long",
+            "@value": 0
+          }
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "lookup_cache",
+        "version": "1"
+      },
+      "id": "08b25117-3686-47ca-8cad-f5dab909bc9f",
+      "data": {
+        "name": {
+          "@type": "string",
+          "@value": "iana-data-cache"
+        },
+        "title": {
+          "@type": "string",
+          "@value": "IANA Data Cache"
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        },
+        "configuration": {
+          "type": {
+            "@type": "string",
+            "@value": "guava_cache"
+          },
+          "max_size": {
+            "@type": "integer",
+            "@value": 300
+          },
+          "expire_after_access": {
+            "@type": "long",
+            "@value": 0
+          },
+          "expire_after_access_unit": {
+            "@type": "string",
+            "@value": "MINUTES"
+          },
+          "expire_after_write": {
+            "@type": "long",
+            "@value": 1
+          },
+          "expire_after_write_unit": {
+            "@type": "string",
+            "@value": "HOURS"
+          }
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "lookup_cache",
+        "version": "1"
+      },
+      "id": "c283a360-8715-4afc-8674-7c568ddb5191",
+      "data": {
+        "name": {
+          "@type": "string",
+          "@value": "tor-exit-node-cache"
+        },
+        "title": {
+          "@type": "string",
+          "@value": "Tor Exit Node Cache"
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        },
+        "configuration": {
+          "type": {
+            "@type": "string",
+            "@value": "guava_cache"
+          },
+          "max_size": {
+            "@type": "integer",
+            "@value": 1500
+          },
+          "expire_after_access": {
+            "@type": "long",
+            "@value": 0
+          },
+          "expire_after_access_unit": {
+            "@type": "string",
+            "@value": "SECONDS"
+          },
+          "expire_after_write": {
+            "@type": "long",
+            "@value": 60
+          },
+          "expire_after_write_unit": {
+            "@type": "string",
+            "@value": "MINUTES"
+          }
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "lookup_cache",
+        "version": "1"
+      },
+      "id": "e42f0b8b-9641-4baa-93fe-79c8d52164b6",
+      "data": {
+        "name": {
+          "@type": "string",
+          "@value": "reverse-dns-cache"
+        },
+        "title": {
+          "@type": "string",
+          "@value": "Reverse DNS Cache"
+        },
+        "description": {
+          "@type": "string",
+          "@value": "Cache for Reverse DNS Lookups against pihole"
+        },
+        "configuration": {
+          "type": {
+            "@type": "string",
+            "@value": "guava_cache"
+          },
+          "max_size": {
+            "@type": "integer",
+            "@value": 1000
+          },
+          "expire_after_access": {
+            "@type": "long",
+            "@value": 0
+          },
+          "expire_after_access_unit": {
+            "@type": "string",
+            "@value": "SECONDS"
+          },
+          "expire_after_write": {
+            "@type": "long",
+            "@value": 86400
+          },
+          "expire_after_write_unit": {
+            "@type": "string",
+            "@value": "SECONDS"
+          }
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "lookup_cache",
+        "version": "1"
+      },
+      "id": "71617a36-b420-4c41-bca7-fd1ad5797a25",
+      "data": {
+        "name": {
+          "@type": "string",
+          "@value": "alienvault-otx-cache"
+        },
+        "title": {
+          "@type": "string",
+          "@value": "AlienVault OTX Cache"
+        },
+        "description": {
+          "@type": "string",
+          "@value": "Cache for all AlienVault lookups"
+        },
+        "configuration": {
+          "type": {
+            "@type": "string",
+            "@value": "guava_cache"
+          },
+          "max_size": {
+            "@type": "integer",
+            "@value": 1000
+          },
+          "expire_after_access": {
+            "@type": "long",
+            "@value": 0
+          },
+          "expire_after_access_unit": {
+            "@type": "string",
+            "@value": "SECONDS"
+          },
+          "expire_after_write": {
+            "@type": "long",
+            "@value": 60
+          },
+          "expire_after_write_unit": {
+            "@type": "string",
+            "@value": "MINUTES"
+          }
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "lookup_cache",
+        "version": "1"
+      },
+      "id": "cd8bf49f-a132-4300-964f-30077b5f738e",
+      "data": {
+        "name": {
+          "@type": "string",
+          "@value": "watchlist-cache"
+        },
+        "title": {
+          "@type": "string",
+          "@value": "Watchlist (Internal - Do not remove)"
+        },
+        "description": {
+          "@type": "string",
+          "@value": "A cache for the Watchlist entries to speed up lookup."
+        },
+        "configuration": {
+          "type": {
+            "@type": "string",
+            "@value": "guava_cache"
+          },
+          "max_size": {
+            "@type": "integer",
+            "@value": 1000
+          },
+          "expire_after_access": {
+            "@type": "long",
+            "@value": 60
+          },
+          "expire_after_access_unit": {
+            "@type": "string",
+            "@value": "SECONDS"
+          },
+          "expire_after_write": {
+            "@type": "long",
+            "@value": 0
+          }
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "lookup_table",
+        "version": "1"
+      },
+      "id": "096eaefd-5f9f-4224-b161-30f9fbeb8259",
+      "data": {
+        "default_single_value_type": {
+          "@type": "string",
+          "@value": "NULL"
+        },
+        "cache_name": {
+          "@type": "string",
+          "@value": "08b25117-3686-47ca-8cad-f5dab909bc9f"
+        },
+        "name": {
+          "@type": "string",
+          "@value": "iana-icmp-types-lookup-table"
+        },
+        "default_multi_value_type": {
+          "@type": "string",
+          "@value": "NULL"
+        },
+        "default_multi_value": {
+          "@type": "string",
+          "@value": ""
+        },
+        "data_adapter_name": {
+          "@type": "string",
+          "@value": "cd6260b9-7eeb-4731-bd01-47fed2848b3e"
+        },
+        "title": {
+          "@type": "string",
+          "@value": "IANA ICMP Types"
+        },
+        "default_single_value": {
+          "@type": "string",
+          "@value": ""
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "lookup_table",
+        "version": "1"
+      },
+      "id": "c3b994ae-b2de-4b28-b0b2-635f1a7efdb1",
+      "data": {
+        "default_single_value_type": {
+          "@type": "string",
+          "@value": "NULL"
+        },
+        "cache_name": {
+          "@type": "string",
+          "@value": "e42f0b8b-9641-4baa-93fe-79c8d52164b6"
+        },
+        "name": {
+          "@type": "string",
+          "@value": "reverse-dns-lookup-table"
+        },
+        "default_multi_value_type": {
+          "@type": "string",
+          "@value": "NULL"
+        },
+        "default_multi_value": {
+          "@type": "string",
+          "@value": ""
+        },
+        "data_adapter_name": {
+          "@type": "string",
+          "@value": "bb4715de-46d3-46a7-bb4d-faea14a38852"
+        },
+        "title": {
+          "@type": "string",
+          "@value": "Reverse DNS Lookup Table"
+        },
+        "default_single_value": {
+          "@type": "string",
+          "@value": ""
+        },
+        "description": {
+          "@type": "string",
+          "@value": "Performs Reverse DNS Lookup against the source and dest IP addresses"
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "lookup_table",
+        "version": "1"
+      },
+      "id": "4b087046-9662-4696-9883-eb907ddf1eb5",
+      "data": {
+        "default_single_value_type": {
+          "@type": "string",
+          "@value": "NULL"
+        },
+        "cache_name": {
+          "@type": "string",
+          "@value": "c283a360-8715-4afc-8674-7c568ddb5191"
+        },
+        "name": {
+          "@type": "string",
+          "@value": "tor-exit-node-list"
+        },
+        "default_multi_value_type": {
+          "@type": "string",
+          "@value": "NULL"
+        },
+        "default_multi_value": {
+          "@type": "string",
+          "@value": ""
+        },
+        "data_adapter_name": {
+          "@type": "string",
+          "@value": "1f5c591b-155f-44c6-957d-73b7fc616b4c"
+        },
+        "title": {
+          "@type": "string",
+          "@value": "Tor Exit Node Lookup Table"
+        },
+        "default_single_value": {
+          "@type": "string",
+          "@value": ""
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "lookup_table",
+        "version": "1"
+      },
+      "id": "60db9661-b075-4039-82ce-ad9679855212",
+      "data": {
+        "default_single_value_type": {
+          "@type": "string",
+          "@value": "NULL"
+        },
+        "cache_name": {
+          "@type": "string",
+          "@value": "6afbc81d-6e72-4fb8-8254-6f45afb31f66"
+        },
+        "name": {
+          "@type": "string",
+          "@value": "sophos-network-names"
+        },
+        "default_multi_value_type": {
+          "@type": "string",
+          "@value": "NULL"
+        },
+        "default_multi_value": {
+          "@type": "string",
+          "@value": ""
+        },
+        "data_adapter_name": {
+          "@type": "string",
+          "@value": "0efb30ff-9eee-4309-8f82-e599146bc69b"
+        },
+        "title": {
+          "@type": "string",
+          "@value": "Sophos Network Names"
+        },
+        "default_single_value": {
+          "@type": "string",
+          "@value": ""
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "lookup_table",
+        "version": "1"
+      },
+      "id": "ac85c62c-5009-4ba3-89cd-50bfbf33aefb",
+      "data": {
+        "default_single_value_type": {
+          "@type": "string",
+          "@value": "NULL"
+        },
+        "cache_name": {
+          "@type": "string",
+          "@value": "71617a36-b420-4c41-bca7-fd1ad5797a25"
+        },
+        "name": {
+          "@type": "string",
+          "@value": "alientvault-otx-ip-lookup-table"
+        },
+        "default_multi_value_type": {
+          "@type": "string",
+          "@value": "NULL"
+        },
+        "default_multi_value": {
+          "@type": "string",
+          "@value": ""
+        },
+        "data_adapter_name": {
+          "@type": "string",
+          "@value": "ccf6f81d-a1db-4b1f-97a7-b77b5436eaa5"
+        },
+        "title": {
+          "@type": "string",
+          "@value": "AlienVault OTX IP Lookup Table"
+        },
+        "default_single_value": {
+          "@type": "string",
+          "@value": ""
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "lookup_table",
+        "version": "1"
+      },
+      "id": "60c1445c-2d11-4e36-aefe-03e67c55c0a0",
+      "data": {
+        "default_single_value_type": {
+          "@type": "string",
+          "@value": "NULL"
+        },
+        "cache_name": {
+          "@type": "string",
+          "@value": "08b25117-3686-47ca-8cad-f5dab909bc9f"
+        },
+        "name": {
+          "@type": "string",
+          "@value": "iana-ip-protocol-numbers-lookup-table"
+        },
+        "default_multi_value_type": {
+          "@type": "string",
+          "@value": "NULL"
+        },
+        "default_multi_value": {
+          "@type": "string",
+          "@value": ""
+        },
+        "data_adapter_name": {
+          "@type": "string",
+          "@value": "e7d2e610-30c4-4073-bc0a-96df95e44688"
+        },
+        "title": {
+          "@type": "string",
+          "@value": "IANA IP Protocol Numbers Lookup Table"
+        },
+        "default_single_value": {
+          "@type": "string",
+          "@value": ""
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "lookup_table",
+        "version": "1"
+      },
+      "id": "0d0bebb4-4c76-4ff7-8e5e-6446e30f1b50",
+      "data": {
+        "default_single_value_type": {
+          "@type": "string",
+          "@value": "NULL"
+        },
+        "cache_name": {
+          "@type": "string",
+          "@value": "79c65324-4ad7-4d01-ab2e-d0b68286519e"
+        },
+        "name": {
+          "@type": "string",
+          "@value": "geolite2-country-lookup-table"
+        },
+        "default_multi_value_type": {
+          "@type": "string",
+          "@value": "NULL"
+        },
+        "default_multi_value": {
+          "@type": "string",
+          "@value": ""
+        },
+        "data_adapter_name": {
+          "@type": "string",
+          "@value": "f845f5fb-1d74-4c2a-9275-7734887ee1c2"
+        },
+        "title": {
+          "@type": "string",
+          "@value": "GeoLite2 Country Lookup Table"
+        },
+        "default_single_value": {
+          "@type": "string",
+          "@value": ""
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "lookup_table",
+        "version": "1"
+      },
+      "id": "7b4fcffd-ebaa-4c39-a890-8100d4cce741",
+      "data": {
+        "default_single_value_type": {
+          "@type": "string",
+          "@value": "NULL"
+        },
+        "cache_name": {
+          "@type": "string",
+          "@value": "cd8bf49f-a132-4300-964f-30077b5f738e"
+        },
+        "name": {
+          "@type": "string",
+          "@value": "watchlist"
+        },
+        "default_multi_value_type": {
+          "@type": "string",
+          "@value": "NULL"
+        },
+        "default_multi_value": {
+          "@type": "string",
+          "@value": ""
+        },
+        "data_adapter_name": {
+          "@type": "string",
+          "@value": "e956fc0f-cc94-4c39-8cd2-a8e9482fc71b"
+        },
+        "title": {
+          "@type": "string",
+          "@value": "Watchlist (Internal - Do not remove)"
+        },
+        "default_single_value": {
+          "@type": "string",
+          "@value": ""
+        },
+        "description": {
+          "@type": "string",
+          "@value": "The lookup table for the Watchlist. It contains three default keys for \"ip\", \"user\" and \"hash\" values."
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "notification",
+        "version": "1"
+      },
+      "id": "676fa784-711e-4bd6-a229-1e36527ed3d1",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "Email"
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        },
+        "config": {
+          "type": "email-notification-v1",
+          "sender": {
+            "@type": "string",
+            "@value": "alert@graylog.lab"
+          },
+          "subject": {
+            "@type": "string",
+            "@value": "Graylog event notification: ${event_definition_title}"
+          },
+          "body_template": {
+            "@type": "string",
+            "@value": "--- [Event Definition] ---------------------------\nTitle:       ${event_definition_title}\nDescription: ${event_definition_description}\nType:        ${event_definition_type}\n--- [Event] --------------------------------------\nTimestamp:            ${event.timestamp}\nMessage:              ${event.message}\nSource:               ${event.source}\nKey:                  ${event.key}\nPriority:             ${event.priority}\nAlert:                ${event.alert}\nTimestamp Processing: ${event.timestamp}\nTimerange Start:      ${event.timerange_start}\nTimerange End:        ${event.timerange_end}\nFields:\n${foreach event.fields field}  ${field.key}: ${field.value}\n${end}\n${if backlog}\n--- [Backlog] ------------------------------------\nLast messages accounting for this alert:\n${foreach backlog message}\n${message}\n${end}\n${end}\n"
+          },
+          "html_body_template": {
+            "@type": "string",
+            "@value": ""
+          },
+          "email_recipients": [
+            "williamtrelawny@gmail.com"
+          ],
+          "user_recipients": []
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "pipeline",
+        "version": "1"
+      },
+      "id": "bbd65d73-1472-4ece-946e-b101cfd5d191",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "00 - 01 | Preprocessing - Sourcetype Tagging"
+        },
+        "description": {
+          "@type": "string",
+          "@value": "Identify & tag incoming logs as a sourcetype."
+        },
+        "source": {
+          "@type": "string",
+          "@value": "pipeline \"00 - 01 | Preprocessing - Sourcetype Tagging\"\nstage 1 match either\nrule \"PRE-processing | Event Source Product Identification (Sophos Firewall)\"\nrule \"PRE-processing | Event Source Product Identification (Sophos Web Proxy)\"\nend"
+        },
+        "connected_streams": []
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "pipeline",
+        "version": "1"
+      },
+      "id": "2fa00dcf-d632-47d3-bb19-102e2613b8e6",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "40 - 59 | Enrichment"
+        },
+        "description": {
+          "@type": "string",
+          "@value": "Data Enrichment & Lookups"
+        },
+        "source": {
+          "@type": "string",
+          "@value": "pipeline \"40 - 59 | Enrichment\"\nstage 40 match either\nrule \"Enrichment | Convert ICMP Type Number to Name\"\nrule \"Enrichment | GeoIP Lookup - Destination\"\nrule \"Enrichment | GeoIP Lookup - Source\"\nrule \"Enrichment | IP Protocol Name Lookup\"\nrule \"Enrichment | Reverse DNS Lookup - Destination IP\"\nrule \"Enrichment | Reverse DNS Lookup - Source IP\"\nstage 41 match pass\nrule \"Enrichment | network_direction=inbound_lab\"\nrule \"Enrichment | network_direction=inbound_lan\"\nrule \"Enrichment | network_direction=inbound_wan\"\nrule \"Enrichment | network_direction=internal_lab\"\nrule \"Enrichment | network_direction=internal_lan\"\nrule \"Enrichment | network_direction=lab_lan\"\nrule \"Enrichment | network_direction=lan_lab\"\nrule \"Enrichment | network_direction=outbound_lab\"\nrule \"Enrichment | network_direction=outbound_lan\"\nstage 59 match pass\nrule \"Enrichment | Threat Indicated = True\"\nrule \"Enrichment | Threat Indicated = False\"\nstage 58 match pass\nrule \"Enrichment | Threat Indicated Lookup\"\nend"
+        },
+        "connected_streams": []
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "pipeline",
+        "version": "1"
+      },
+      "id": "da30c2e1-010d-496c-82f1-b9f4870f19d2",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "02 - 09 | Stream Routing"
+        },
+        "description": {
+          "@type": "string",
+          "@value": "Route messages to desired Streams"
+        },
+        "source": {
+          "@type": "string",
+          "@value": "pipeline \"02 - 09 | Stream Routing\"\nstage 9 match either\nrule \"PRE-processing | Stream Routing (Sophos Firewall)\"\nrule \"PRE-processing | Stream Routing (Sophos Web Proxy)\"\nend"
+        },
+        "connected_streams": []
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "pipeline",
+        "version": "1"
+      },
+      "id": "33a04f0b-af49-459a-be3e-99624f620e62",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "10 - 19 | Parsing - Sophos Firewall Logs"
+        },
+        "description": {
+          "@type": "string",
+          "@value": "Parse Sophos Firewall logs"
+        },
+        "source": {
+          "@type": "string",
+          "@value": "pipeline \"10 - 19 | Parsing - Sophos Firewall Logs\"\nstage 10 match either\nrule \"Parsing | Sophos Firewall - Base (KV)\"\nstage 11 match pass\nrule \"Parsing | Sophos Firewall - 'action' Field\"\nrule \"Parsing | Sophos Firewall - 'name' Field\"\nrule \"Parsing | Sophos Firewall - 'tcpflags' Field\"\nrule \"Parsing | Sophos Firewall - 'info' Field\"\nstage 12 match either\nrule \"Parsing | Sophos Firewall - Remove Insignificant Fields\"\nend"
+        },
+        "connected_streams": []
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "pipeline",
+        "version": "1"
+      },
+      "id": "ac6a86ea-b08f-401a-a0e1-8850d3d7c211",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "60 - 79 | Threat Intel"
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        },
+        "source": {
+          "@type": "string",
+          "@value": "pipeline \"60 - 79 | Threat Intel\"\nstage 60 match either\nrule \"Threat Intel | Tor Exit Node (Destination IP)\"\nrule \"Threat Intel | Tor Exit Node (Source IP)\"\nend"
+        },
+        "connected_streams": []
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "pipeline",
+        "version": "1"
+      },
+      "id": "a0e5e438-4326-472a-9de9-d0b5b03f966f",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "10 - 19 | Parsing - Sophos UTM Web Proxy Logs"
+        },
+        "description": {
+          "@type": "string",
+          "@value": "Parse Sophos UTM Web Proxy logs"
+        },
+        "source": {
+          "@type": "string",
+          "@value": "pipeline \"10 - 19 | Parsing - Sophos UTM Web Proxy Logs\"\nstage 10 match either\nrule \"Parsing | Sophos UTM Web Proxy Logs\"\nstage 11 match either\nrule \"Parsing | Sophos UTM Web Proxy Logs - fix 'categoryname'\"\nrule \"Parsing | Sophos UTM Web Proxy Logs - fix 'country'\"\nrule \"Parsing | Sophos UTM Web Proxy Logs - fix 'filteraction'\"\nrule \"Parsing | Sophos UTM Web Proxy Logs - fix 'name'\"\nrule \"Parsing | Sophos UTM Web Proxy Logs - fix 'profile'\"\nrule \"Parsing | Sophos UTM Web Proxy Logs - fix 'ua'\"\nstage 12 match either\nrule \"POST-processing | Enforce ECS compliant field names - Sophos Web Proxy\"\nend"
+        },
+        "connected_streams": []
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "pipeline",
+        "version": "1"
+      },
+      "id": "13f70055-210d-4ab9-b03a-315a9ab9a1a8",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "20 - 39 | Normalization - Sophos Firewall"
+        },
+        "description": {
+          "@type": "string",
+          "@value": "Normalize Sophos Firewall logs to comply with Graylog Information Model (GIM)"
+        },
+        "source": {
+          "@type": "string",
+          "@value": "pipeline \"20 - 39 | Normalization - Sophos Firewall\"\nstage 20 match either\nrule \"Normalization | Sophos Firewall - Enforce GIM Field Names\"\nstage 21 match either\nrule \"Normalization | GIM - Enforce Field Types\"\nstage 22 match either\nrule \"Normalization | GIM - Lowercase String Values\"\nstage 23 match either\nrule \"Normalization | Sophos Network Names\"\nend"
+        },
+        "connected_streams": []
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "search",
+        "version": "1"
+      },
+      "id": "74504eb5-29ad-4b1c-9715-2233c97568f2",
+      "data": {
+        "summary": {
+          "@type": "string",
+          "@value": ""
+        },
+        "search": {
+          "queries": [
+            {
+              "id": "eaf442d1-1c8c-4b76-ae70-38001e193400",
+              "timerange": {
+                "type": "absolute",
+                "from": "2021-10-10T00:28:00.000Z",
+                "to": "2021-10-10T03:01:00.000Z"
+              },
+              "filter": {
+                "type": "or",
+                "filters": [
+                  {
+                    "type": "stream",
+                    "id": "69aac049-f4f0-44d2-b8ea-4fe8534d8962"
+                  }
+                ]
+              },
+              "query": {
+                "type": "elasticsearch",
+                "query_string": "\"dstip=185.25.183.178\""
+              },
+              "search_types": [
+                {
+                  "query": null,
+                  "name": null,
+                  "timerange": null,
+                  "offset": 0,
+                  "streams": [],
+                  "filter": null,
+                  "decorators": [],
+                  "type": "messages",
+                  "id": "6ecd387a-1fa1-4377-8441-89997183d2bc",
+                  "limit": 150
+                },
+                {
+                  "query": null,
+                  "name": "chart",
+                  "timerange": null,
+                  "streams": [],
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "count()",
+                      "field": null
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [
+                    {
+                      "type": "time",
+                      "field": "timestamp",
+                      "interval": {
+                        "type": "auto",
+                        "scaling": 1
+                      }
+                    }
+                  ],
+                  "type": "pivot",
+                  "id": "c52b80d8-d845-430b-9eff-44acc93e1148",
+                  "column_groups": [],
+                  "sort": []
+                }
+              ]
+            }
+          ],
+          "parameters": [],
+          "requires": {},
+          "owner": "admin",
+          "created_at": "2021-10-11T13:31:40.728Z"
+        },
+        "created_at": "2021-10-11T13:17:52.151Z",
+        "requires": {},
+        "state": {
+          "eaf442d1-1c8c-4b76-ae70-38001e193400": {
+            "selected_fields": null,
+            "static_message_list_id": null,
+            "titles": {
+              "widget": {
+                "b99f4542-ca54-438d-b418-23ee41e1022a": "Message Count",
+                "593b9233-c4ee-44ba-8481-126233af5914": "All Messages"
+              }
+            },
+            "widgets": [
+              {
+                "id": "593b9233-c4ee-44ba-8481-126233af5914",
+                "type": "messages",
+                "filter": null,
+                "timerange": null,
+                "query": null,
+                "streams": [],
+                "config": {
+                  "fields": [
+                    "timestamp",
+                    "source"
+                  ],
+                  "show_message_row": true,
+                  "show_summary": null,
+                  "decorators": [],
+                  "sort": [
+                    {
+                      "type": "pivot",
+                      "field": "timestamp",
+                      "direction": "Descending"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "b99f4542-ca54-438d-b418-23ee41e1022a",
+                "type": "aggregation",
+                "filter": null,
+                "timerange": null,
+                "query": null,
+                "streams": [],
+                "config": {
+                  "visualization": "bar",
+                  "event_annotation": false,
+                  "row_pivots": [
+                    {
+                      "field": "timestamp",
+                      "type": "time",
+                      "config": {
+                        "interval": {
+                          "type": "auto",
+                          "scaling": 1
+                        }
+                      }
+                    }
+                  ],
+                  "series": [
+                    {
+                      "config": {
+                        "name": null
+                      },
+                      "function": "count()"
+                    }
+                  ],
+                  "rollup": true,
+                  "column_pivots": [],
+                  "visualization_config": null,
+                  "formatting_settings": null,
+                  "sort": []
+                }
+              }
+            ],
+            "widget_mapping": {
+              "b99f4542-ca54-438d-b418-23ee41e1022a": [
+                "c52b80d8-d845-430b-9eff-44acc93e1148"
+              ],
+              "593b9233-c4ee-44ba-8481-126233af5914": [
+                "6ecd387a-1fa1-4377-8441-89997183d2bc"
+              ]
+            },
+            "positions": {
+              "b99f4542-ca54-438d-b418-23ee41e1022a": {
+                "col": 1,
+                "row": 1,
+                "height": 2,
+                "width": "Infinity"
+              },
+              "593b9233-c4ee-44ba-8481-126233af5914": {
+                "col": 1,
+                "row": 3,
+                "height": 6,
+                "width": "Infinity"
+              }
+            },
+            "formatting": {
+              "highlighting": []
+            },
+            "display_mode_settings": {
+              "positions": {}
+            }
+          }
+        },
+        "properties": [],
+        "owner": "admin",
+        "title": {
+          "@type": "string",
+          "@value": "2021-10-10 0000 Falco UDP to Valve IP in Dubai"
+        },
+        "type": "SEARCH",
+        "description": {
+          "@type": "string",
+          "@value": ""
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "search",
+        "version": "1"
+      },
+      "id": "4a900941-3532-4f4b-a01b-9f497d31632c",
+      "data": {
+        "summary": {
+          "@type": "string",
+          "@value": ""
+        },
+        "search": {
+          "queries": [
+            {
+              "id": "eaf442d1-1c8c-4b76-ae70-38001e193400",
+              "timerange": {
+                "type": "absolute",
+                "from": "2021-10-09T04:29:00.000Z",
+                "to": "2021-10-09T04:33:00.000Z"
+              },
+              "filter": {
+                "type": "or",
+                "filters": [
+                  {
+                    "type": "stream",
+                    "id": "69aac049-f4f0-44d2-b8ea-4fe8534d8962"
+                  }
+                ]
+              },
+              "query": {
+                "type": "elasticsearch",
+                "query_string": "\"dstip=47.91.111.180\""
+              },
+              "search_types": [
+                {
+                  "query": null,
+                  "name": null,
+                  "timerange": null,
+                  "offset": 0,
+                  "streams": [],
+                  "filter": null,
+                  "decorators": [],
+                  "type": "messages",
+                  "id": "6ecd387a-1fa1-4377-8441-89997183d2bc",
+                  "limit": 150
+                },
+                {
+                  "query": null,
+                  "name": "chart",
+                  "timerange": null,
+                  "streams": [],
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "count()",
+                      "field": null
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [
+                    {
+                      "type": "time",
+                      "field": "timestamp",
+                      "interval": {
+                        "type": "auto",
+                        "scaling": 1
+                      }
+                    }
+                  ],
+                  "type": "pivot",
+                  "id": "c52b80d8-d845-430b-9eff-44acc93e1148",
+                  "column_groups": [],
+                  "sort": []
+                }
+              ]
+            }
+          ],
+          "parameters": [],
+          "requires": {},
+          "owner": "admin",
+          "created_at": "2021-10-11T13:47:29.724Z"
+        },
+        "created_at": "2021-10-11T13:17:52.151Z",
+        "requires": {},
+        "state": {
+          "eaf442d1-1c8c-4b76-ae70-38001e193400": {
+            "selected_fields": null,
+            "static_message_list_id": null,
+            "titles": {
+              "widget": {
+                "b99f4542-ca54-438d-b418-23ee41e1022a": "Message Count",
+                "593b9233-c4ee-44ba-8481-126233af5914": "All Messages"
+              }
+            },
+            "widgets": [
+              {
+                "id": "593b9233-c4ee-44ba-8481-126233af5914",
+                "type": "messages",
+                "filter": null,
+                "timerange": null,
+                "query": null,
+                "streams": [],
+                "config": {
+                  "fields": [
+                    "timestamp",
+                    "source"
+                  ],
+                  "show_message_row": true,
+                  "show_summary": null,
+                  "decorators": [],
+                  "sort": [
+                    {
+                      "type": "pivot",
+                      "field": "timestamp",
+                      "direction": "Descending"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "b99f4542-ca54-438d-b418-23ee41e1022a",
+                "type": "aggregation",
+                "filter": null,
+                "timerange": null,
+                "query": null,
+                "streams": [],
+                "config": {
+                  "visualization": "bar",
+                  "event_annotation": false,
+                  "row_pivots": [
+                    {
+                      "field": "timestamp",
+                      "type": "time",
+                      "config": {
+                        "interval": {
+                          "type": "auto",
+                          "scaling": 1
+                        }
+                      }
+                    }
+                  ],
+                  "series": [
+                    {
+                      "config": {
+                        "name": null
+                      },
+                      "function": "count()"
+                    }
+                  ],
+                  "rollup": true,
+                  "column_pivots": [],
+                  "visualization_config": null,
+                  "formatting_settings": null,
+                  "sort": []
+                }
+              }
+            ],
+            "widget_mapping": {
+              "b99f4542-ca54-438d-b418-23ee41e1022a": [
+                "c52b80d8-d845-430b-9eff-44acc93e1148"
+              ],
+              "593b9233-c4ee-44ba-8481-126233af5914": [
+                "6ecd387a-1fa1-4377-8441-89997183d2bc"
+              ]
+            },
+            "positions": {
+              "b99f4542-ca54-438d-b418-23ee41e1022a": {
+                "col": 1,
+                "row": 1,
+                "height": 2,
+                "width": "Infinity"
+              },
+              "593b9233-c4ee-44ba-8481-126233af5914": {
+                "col": 1,
+                "row": 3,
+                "height": 6,
+                "width": "Infinity"
+              }
+            },
+            "formatting": {
+              "highlighting": []
+            },
+            "display_mode_settings": {
+              "positions": {}
+            }
+          }
+        },
+        "properties": [],
+        "owner": "admin",
+        "title": {
+          "@type": "string",
+          "@value": "2021-10-09 0400 Sophos ICMP Echo to Dubai IP"
+        },
+        "type": "SEARCH",
+        "description": {
+          "@type": "string",
+          "@value": ""
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "search",
+        "version": "1"
+      },
+      "id": "4643b153-49eb-49a5-961d-2dd6fda3aee0",
+      "data": {
+        "summary": {
+          "@type": "string",
+          "@value": ""
+        },
+        "search": {
+          "queries": [
+            {
+              "id": "7184610b-65e9-4521-a725-95665839352d",
+              "timerange": {
+                "type": "relative",
+                "from": 300
+              },
+              "query": {
+                "type": "elasticsearch",
+                "query_string": "source_ip:\"10.239.0.1\""
+              },
+              "search_types": [
+                {
+                  "query": null,
+                  "name": null,
+                  "timerange": null,
+                  "offset": 0,
+                  "streams": [],
+                  "filter": null,
+                  "decorators": [],
+                  "type": "messages",
+                  "id": "e73fe7fd-a57a-457d-8276-c0f4bf49c64e",
+                  "limit": 150
+                },
+                {
+                  "query": null,
+                  "name": "chart",
+                  "timerange": null,
+                  "streams": [],
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "count()",
+                      "field": null
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [
+                    {
+                      "type": "time",
+                      "field": "timestamp",
+                      "interval": {
+                        "type": "auto",
+                        "scaling": 1
+                      }
+                    }
+                  ],
+                  "type": "pivot",
+                  "id": "7ec61fa9-9b08-4d7a-a7de-909fea981f0c",
+                  "column_groups": [],
+                  "sort": []
+                }
+              ]
+            }
+          ],
+          "parameters": [],
+          "requires": {},
+          "owner": "admin",
+          "created_at": "2021-11-14T12:54:32.668Z"
+        },
+        "created_at": "2021-11-14T12:57:53.775Z",
+        "requires": {},
+        "state": {
+          "7184610b-65e9-4521-a725-95665839352d": {
+            "selected_fields": null,
+            "static_message_list_id": null,
+            "titles": {
+              "widget": {
+                "1a74c9e3-923e-4781-9657-90c51be3ca78": "Message Count",
+                "94948fd5-989d-49f6-a166-d90bc0f2108c": "All Messages"
+              }
+            },
+            "widgets": [
+              {
+                "id": "94948fd5-989d-49f6-a166-d90bc0f2108c",
+                "type": "messages",
+                "filter": null,
+                "timerange": null,
+                "query": null,
+                "streams": [],
+                "config": {
+                  "fields": [
+                    "timestamp",
+                    "source"
+                  ],
+                  "show_message_row": true,
+                  "show_summary": true,
+                  "decorators": [],
+                  "sort": [
+                    {
+                      "type": "pivot",
+                      "field": "timestamp",
+                      "direction": "Descending"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "1a74c9e3-923e-4781-9657-90c51be3ca78",
+                "type": "aggregation",
+                "filter": null,
+                "timerange": null,
+                "query": null,
+                "streams": [],
+                "config": {
+                  "visualization": "bar",
+                  "event_annotation": false,
+                  "row_pivots": [
+                    {
+                      "field": "timestamp",
+                      "type": "time",
+                      "config": {
+                        "interval": {
+                          "type": "auto",
+                          "scaling": 1
+                        }
+                      }
+                    }
+                  ],
+                  "series": [
+                    {
+                      "config": {
+                        "name": null
+                      },
+                      "function": "count()"
+                    }
+                  ],
+                  "rollup": true,
+                  "column_pivots": [],
+                  "visualization_config": null,
+                  "formatting_settings": null,
+                  "sort": []
+                }
+              }
+            ],
+            "widget_mapping": {
+              "1a74c9e3-923e-4781-9657-90c51be3ca78": [
+                "7ec61fa9-9b08-4d7a-a7de-909fea981f0c"
+              ],
+              "94948fd5-989d-49f6-a166-d90bc0f2108c": [
+                "e73fe7fd-a57a-457d-8276-c0f4bf49c64e"
+              ]
+            },
+            "positions": {
+              "1a74c9e3-923e-4781-9657-90c51be3ca78": {
+                "col": 1,
+                "row": 1,
+                "height": 2,
+                "width": "Infinity"
+              },
+              "94948fd5-989d-49f6-a166-d90bc0f2108c": {
+                "col": 1,
+                "row": 3,
+                "height": 6,
+                "width": "Infinity"
+              }
+            },
+            "formatting": null,
+            "display_mode_settings": {
+              "positions": {}
+            }
+          }
+        },
+        "properties": [],
+        "owner": "admin",
+        "title": {
+          "@type": "string",
+          "@value": "10.239.0.1"
+        },
+        "type": "SEARCH",
+        "description": {
+          "@type": "string",
+          "@value": ""
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "search",
+        "version": "1"
+      },
+      "id": "c4a9f2b0-e7b0-443d-90f4-53bffc8cd6f9",
+      "data": {
+        "summary": {
+          "@type": "string",
+          "@value": ""
+        },
+        "search": {
+          "queries": [
+            {
+              "id": "69b19c85-4019-437d-91b7-1065f25e53fd",
+              "timerange": {
+                "type": "relative",
+                "range": 604800
+              },
+              "query": {
+                "type": "elasticsearch",
+                "query_string": "httpproxy NOT \"action=\\\"pass\\\"\" NOT \"CMD\" NOT \"application=\\\"winupdat\\\"\" NOT \"id=\\\"0003\\\"\" NOT \"id=\\\"0067\\\"\" NOT \"ua=\\\"OfficeClickToRun\\\"\" NOT \"confd\" NOT \"ua\\\"Microsoft-Delivery-Optimization/10.0\\\"\""
+              },
+              "search_types": [
+                {
+                  "query": null,
+                  "name": "chart",
+                  "timerange": null,
+                  "streams": [],
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "count()",
+                      "field": null
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [
+                    {
+                      "type": "time",
+                      "field": "timestamp",
+                      "interval": {
+                        "type": "auto",
+                        "scaling": 1
+                      }
+                    }
+                  ],
+                  "type": "pivot",
+                  "id": "05eef983-21a3-46b6-8feb-778eabd1d81c",
+                  "column_groups": [],
+                  "sort": []
+                },
+                {
+                  "query": null,
+                  "name": null,
+                  "timerange": null,
+                  "offset": 0,
+                  "streams": [],
+                  "filter": null,
+                  "decorators": [],
+                  "type": "messages",
+                  "id": "36e367b7-8e29-4cb9-a42d-86074cffc0e7",
+                  "limit": 150
+                }
+              ]
+            }
+          ],
+          "parameters": [],
+          "requires": {},
+          "owner": "admin",
+          "created_at": "2021-05-03T13:46:17.728Z"
+        },
+        "created_at": "2021-05-03T12:48:25.938Z",
+        "requires": {},
+        "state": {
+          "69b19c85-4019-437d-91b7-1065f25e53fd": {
+            "selected_fields": null,
+            "static_message_list_id": null,
+            "titles": {
+              "widget": {
+                "523df2ac-e411-458c-9bf6-ea992104bf2f": "Message Count",
+                "580c40b5-d358-44cd-a0c8-f1e4c61e9523": "All Messages"
+              }
+            },
+            "widgets": [
+              {
+                "id": "580c40b5-d358-44cd-a0c8-f1e4c61e9523",
+                "type": "messages",
+                "filter": null,
+                "timerange": null,
+                "query": null,
+                "streams": [],
+                "config": {
+                  "fields": [
+                    "timestamp",
+                    "source"
+                  ],
+                  "show_message_row": true,
+                  "show_summary": null,
+                  "decorators": [],
+                  "sort": [
+                    {
+                      "type": "pivot",
+                      "field": "timestamp",
+                      "direction": "Descending"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "523df2ac-e411-458c-9bf6-ea992104bf2f",
+                "type": "aggregation",
+                "filter": null,
+                "timerange": null,
+                "query": null,
+                "streams": [],
+                "config": {
+                  "visualization": "bar",
+                  "event_annotation": false,
+                  "row_pivots": [
+                    {
+                      "field": "timestamp",
+                      "type": "time",
+                      "config": {
+                        "interval": {
+                          "type": "auto",
+                          "scaling": 1
+                        }
+                      }
+                    }
+                  ],
+                  "series": [
+                    {
+                      "config": {
+                        "name": null
+                      },
+                      "function": "count()"
+                    }
+                  ],
+                  "rollup": true,
+                  "column_pivots": [],
+                  "visualization_config": null,
+                  "formatting_settings": null,
+                  "sort": []
+                }
+              }
+            ],
+            "widget_mapping": {
+              "523df2ac-e411-458c-9bf6-ea992104bf2f": [
+                "05eef983-21a3-46b6-8feb-778eabd1d81c"
+              ],
+              "580c40b5-d358-44cd-a0c8-f1e4c61e9523": [
+                "36e367b7-8e29-4cb9-a42d-86074cffc0e7"
+              ]
+            },
+            "positions": {
+              "523df2ac-e411-458c-9bf6-ea992104bf2f": {
+                "col": 1,
+                "row": 1,
+                "height": 2,
+                "width": "Infinity"
+              },
+              "580c40b5-d358-44cd-a0c8-f1e4c61e9523": {
+                "col": 1,
+                "row": 3,
+                "height": 6,
+                "width": "Infinity"
+              }
+            },
+            "formatting": null,
+            "display_mode_settings": {
+              "positions": {}
+            }
+          }
+        },
+        "properties": [],
+        "owner": "admin",
+        "title": {
+          "@type": "string",
+          "@value": "Web Filter Significant Events"
+        },
+        "type": "SEARCH",
+        "description": {
+          "@type": "string",
+          "@value": ""
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "search",
+        "version": "1"
+      },
+      "id": "bb6e3509-99f7-4a86-9f88-ae13b6848413",
+      "data": {
+        "summary": {
+          "@type": "string",
+          "@value": ""
+        },
+        "search": {
+          "queries": [
+            {
+              "id": "77fa24e9-0eea-4dcb-9d3e-a32e93485e4d",
+              "timerange": {
+                "type": "relative",
+                "from": 300
+              },
+              "filter": {
+                "type": "or",
+                "filters": [
+                  {
+                    "type": "stream",
+                    "id": "69aac049-f4f0-44d2-b8ea-4fe8534d8962"
+                  }
+                ]
+              },
+              "query": {
+                "type": "elasticsearch",
+                "query_string": ""
+              },
+              "search_types": [
+                {
+                  "query": null,
+                  "name": "chart",
+                  "timerange": null,
+                  "streams": [],
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "count()",
+                      "field": null
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [
+                    {
+                      "type": "values",
+                      "field": "destination_ip_threat_indicated",
+                      "limit": 15
+                    }
+                  ],
+                  "type": "pivot",
+                  "id": "209e7df6-1571-456c-826a-b3460cc0faa2",
+                  "column_groups": [],
+                  "sort": []
+                },
+                {
+                  "query": null,
+                  "name": "chart",
+                  "timerange": null,
+                  "streams": [],
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "count()",
+                      "field": null
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [
+                    {
+                      "type": "values",
+                      "field": "source_host_threat_indicated",
+                      "limit": 15
+                    }
+                  ],
+                  "type": "pivot",
+                  "id": "47c133eb-83db-48ef-b8ba-e05dcecb5bd7",
+                  "column_groups": [],
+                  "sort": []
+                },
+                {
+                  "query": null,
+                  "name": "chart",
+                  "timerange": null,
+                  "streams": [],
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "count()",
+                      "field": null
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [
+                    {
+                      "type": "values",
+                      "field": "source_ip_threat_indicated",
+                      "limit": 15
+                    }
+                  ],
+                  "type": "pivot",
+                  "id": "d5c7af7d-dfd8-4352-95f0-df18ad3894d8",
+                  "column_groups": [],
+                  "sort": []
+                },
+                {
+                  "query": null,
+                  "name": null,
+                  "timerange": null,
+                  "offset": 0,
+                  "streams": [],
+                  "filter": null,
+                  "decorators": [],
+                  "type": "messages",
+                  "id": "71de2087-d523-4c2f-838c-b45f9d41b066",
+                  "limit": 150
+                },
+                {
+                  "query": null,
+                  "name": "chart",
+                  "timerange": null,
+                  "streams": [],
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "count()",
+                      "field": null
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [
+                    {
+                      "type": "values",
+                      "field": "destination_host_threat_indicated",
+                      "limit": 15
+                    }
+                  ],
+                  "type": "pivot",
+                  "id": "5fcf48c0-dd75-4c62-9f1e-9223faa92461",
+                  "column_groups": [],
+                  "sort": []
+                }
+              ]
+            }
+          ],
+          "parameters": [],
+          "requires": {},
+          "owner": "admin",
+          "created_at": "2021-11-11T12:01:32.286Z"
+        },
+        "created_at": "2021-11-11T12:04:39.492Z",
+        "requires": {},
+        "state": {
+          "77fa24e9-0eea-4dcb-9d3e-a32e93485e4d": {
+            "selected_fields": null,
+            "static_message_list_id": null,
+            "titles": {
+              "widget": {
+                "a3be7c4a-3bab-4a8a-aaa9-289e94a94c3b": "Message Count",
+                "4c44f9f6-a451-4b5f-b137-1fd364535496": "All Messages",
+                "c09ca707-ef16-4f3f-95c9-91ea9d3206d8": "Source IP Threat Indicated",
+                "3c3b2542-f0b0-4ac0-8a3e-b3274ff021c4": "Source Host Threat Indicated",
+                "f6ddccab-30a5-4658-98ea-46955011996d": "Dest IP Threat Indicated",
+                "6d1d9d3a-989d-45ff-b57d-7e968bbdb759": "Dest Host Threat Indicated"
+              }
+            },
+            "widgets": [
+              {
+                "id": "f6ddccab-30a5-4658-98ea-46955011996d",
+                "type": "aggregation",
+                "filter": null,
+                "timerange": null,
+                "query": null,
+                "streams": [],
+                "config": {
+                  "visualization": "table",
+                  "event_annotation": false,
+                  "row_pivots": [
+                    {
+                      "field": "destination_ip_threat_indicated",
+                      "type": "values",
+                      "config": {
+                        "limit": 15
+                      }
+                    }
+                  ],
+                  "series": [
+                    {
+                      "config": {
+                        "name": null
+                      },
+                      "function": "count()"
+                    }
+                  ],
+                  "rollup": true,
+                  "column_pivots": [],
+                  "visualization_config": null,
+                  "formatting_settings": null,
+                  "sort": []
+                }
+              },
+              {
+                "id": "6d1d9d3a-989d-45ff-b57d-7e968bbdb759",
+                "type": "aggregation",
+                "filter": null,
+                "timerange": null,
+                "query": null,
+                "streams": [],
+                "config": {
+                  "visualization": "table",
+                  "event_annotation": false,
+                  "row_pivots": [
+                    {
+                      "field": "destination_host_threat_indicated",
+                      "type": "values",
+                      "config": {
+                        "limit": 15
+                      }
+                    }
+                  ],
+                  "series": [
+                    {
+                      "config": {
+                        "name": null
+                      },
+                      "function": "count()"
+                    }
+                  ],
+                  "rollup": true,
+                  "column_pivots": [],
+                  "visualization_config": null,
+                  "formatting_settings": null,
+                  "sort": []
+                }
+              },
+              {
+                "id": "4c44f9f6-a451-4b5f-b137-1fd364535496",
+                "type": "messages",
+                "filter": null,
+                "timerange": null,
+                "query": null,
+                "streams": [],
+                "config": {
+                  "fields": [
+                    "timestamp",
+                    "source"
+                  ],
+                  "show_message_row": true,
+                  "show_summary": true,
+                  "decorators": [],
+                  "sort": [
+                    {
+                      "type": "pivot",
+                      "field": "timestamp",
+                      "direction": "Descending"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "c09ca707-ef16-4f3f-95c9-91ea9d3206d8",
+                "type": "aggregation",
+                "filter": null,
+                "timerange": null,
+                "query": null,
+                "streams": [],
+                "config": {
+                  "visualization": "table",
+                  "event_annotation": false,
+                  "row_pivots": [
+                    {
+                      "field": "source_ip_threat_indicated",
+                      "type": "values",
+                      "config": {
+                        "limit": 15
+                      }
+                    }
+                  ],
+                  "series": [
+                    {
+                      "config": {
+                        "name": null
+                      },
+                      "function": "count()"
+                    }
+                  ],
+                  "rollup": true,
+                  "column_pivots": [],
+                  "visualization_config": null,
+                  "formatting_settings": null,
+                  "sort": []
+                }
+              },
+              {
+                "id": "3c3b2542-f0b0-4ac0-8a3e-b3274ff021c4",
+                "type": "aggregation",
+                "filter": null,
+                "timerange": null,
+                "query": null,
+                "streams": [],
+                "config": {
+                  "visualization": "table",
+                  "event_annotation": false,
+                  "row_pivots": [
+                    {
+                      "field": "source_host_threat_indicated",
+                      "type": "values",
+                      "config": {
+                        "limit": 15
+                      }
+                    }
+                  ],
+                  "series": [
+                    {
+                      "config": {
+                        "name": null
+                      },
+                      "function": "count()"
+                    }
+                  ],
+                  "rollup": true,
+                  "column_pivots": [],
+                  "visualization_config": null,
+                  "formatting_settings": null,
+                  "sort": []
+                }
+              }
+            ],
+            "widget_mapping": {
+              "4c44f9f6-a451-4b5f-b137-1fd364535496": [
+                "71de2087-d523-4c2f-838c-b45f9d41b066"
+              ],
+              "c09ca707-ef16-4f3f-95c9-91ea9d3206d8": [
+                "d5c7af7d-dfd8-4352-95f0-df18ad3894d8"
+              ],
+              "3c3b2542-f0b0-4ac0-8a3e-b3274ff021c4": [
+                "47c133eb-83db-48ef-b8ba-e05dcecb5bd7"
+              ],
+              "f6ddccab-30a5-4658-98ea-46955011996d": [
+                "209e7df6-1571-456c-826a-b3460cc0faa2"
+              ],
+              "6d1d9d3a-989d-45ff-b57d-7e968bbdb759": [
+                "5fcf48c0-dd75-4c62-9f1e-9223faa92461"
+              ]
+            },
+            "positions": {
+              "6d1d9d3a-989d-45ff-b57d-7e968bbdb759": {
+                "col": 7,
+                "row": 1,
+                "height": 2,
+                "width": 2
+              },
+              "f6ddccab-30a5-4658-98ea-46955011996d": {
+                "col": 5,
+                "row": 1,
+                "height": 2,
+                "width": 2
+              },
+              "3c3b2542-f0b0-4ac0-8a3e-b3274ff021c4": {
+                "col": 3,
+                "row": 1,
+                "height": 2,
+                "width": 2
+              },
+              "c09ca707-ef16-4f3f-95c9-91ea9d3206d8": {
+                "col": 1,
+                "row": 1,
+                "height": 2,
+                "width": 2
+              },
+              "4c44f9f6-a451-4b5f-b137-1fd364535496": {
+                "col": 1,
+                "row": 3,
+                "height": 6,
+                "width": "Infinity"
+              }
+            },
+            "formatting": null,
+            "display_mode_settings": {
+              "positions": {}
+            }
+          }
+        },
+        "properties": [],
+        "owner": "admin",
+        "title": {
+          "@type": "string",
+          "@value": "Threat Indicated"
+        },
+        "type": "SEARCH",
+        "description": {
+          "@type": "string",
+          "@value": ""
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "search",
+        "version": "1"
+      },
+      "id": "4a261391-2034-4ba5-9100-e8adc203613e",
+      "data": {
+        "summary": {
+          "@type": "string",
+          "@value": ""
+        },
+        "search": {
+          "queries": [
+            {
+              "id": "69b19c85-4019-437d-91b7-1065f25e53fd",
+              "timerange": {
+                "type": "relative",
+                "range": 604800
+              },
+              "query": {
+                "type": "elasticsearch",
+                "query_string": "httpproxy NOT \"action=\\\"pass\\\"\" NOT \"CMD\" NOT \"application=\\\"winupdat\\\"\" NOT \"id=\\\"0003\\\"\" NOT \"id=\\\"0067\\\"\" NOT \"ua=\\\"OfficeClickToRun\\\"\" NOT \"confd\" NOT \"ua\\\"Microsoft-Delivery-Optimization/10.0\\\"\""
+              },
+              "search_types": [
+                {
+                  "query": null,
+                  "name": "chart",
+                  "timerange": null,
+                  "streams": [],
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "count()",
+                      "field": null
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [
+                    {
+                      "type": "time",
+                      "field": "timestamp",
+                      "interval": {
+                        "type": "auto",
+                        "scaling": 1
+                      }
+                    }
+                  ],
+                  "type": "pivot",
+                  "id": "05eef983-21a3-46b6-8feb-778eabd1d81c",
+                  "column_groups": [],
+                  "sort": []
+                },
+                {
+                  "query": null,
+                  "name": null,
+                  "timerange": null,
+                  "offset": 0,
+                  "streams": [],
+                  "filter": null,
+                  "decorators": [],
+                  "type": "messages",
+                  "id": "36e367b7-8e29-4cb9-a42d-86074cffc0e7",
+                  "limit": 150
+                }
+              ]
+            }
+          ],
+          "parameters": [],
+          "requires": {},
+          "owner": "admin",
+          "created_at": "2021-05-03T13:46:17.728Z"
+        },
+        "created_at": "2021-05-03T12:48:25.938Z",
+        "requires": {},
+        "state": {
+          "69b19c85-4019-437d-91b7-1065f25e53fd": {
+            "selected_fields": null,
+            "static_message_list_id": null,
+            "titles": {
+              "widget": {
+                "523df2ac-e411-458c-9bf6-ea992104bf2f": "Message Count",
+                "580c40b5-d358-44cd-a0c8-f1e4c61e9523": "All Messages"
+              }
+            },
+            "widgets": [
+              {
+                "id": "580c40b5-d358-44cd-a0c8-f1e4c61e9523",
+                "type": "messages",
+                "filter": null,
+                "timerange": null,
+                "query": null,
+                "streams": [],
+                "config": {
+                  "fields": [
+                    "timestamp",
+                    "source"
+                  ],
+                  "show_message_row": true,
+                  "show_summary": null,
+                  "decorators": [],
+                  "sort": [
+                    {
+                      "type": "pivot",
+                      "field": "timestamp",
+                      "direction": "Descending"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "523df2ac-e411-458c-9bf6-ea992104bf2f",
+                "type": "aggregation",
+                "filter": null,
+                "timerange": null,
+                "query": null,
+                "streams": [],
+                "config": {
+                  "visualization": "bar",
+                  "event_annotation": false,
+                  "row_pivots": [
+                    {
+                      "field": "timestamp",
+                      "type": "time",
+                      "config": {
+                        "interval": {
+                          "type": "auto",
+                          "scaling": 1
+                        }
+                      }
+                    }
+                  ],
+                  "series": [
+                    {
+                      "config": {
+                        "name": null
+                      },
+                      "function": "count()"
+                    }
+                  ],
+                  "rollup": true,
+                  "column_pivots": [],
+                  "visualization_config": null,
+                  "formatting_settings": null,
+                  "sort": []
+                }
+              }
+            ],
+            "widget_mapping": {
+              "523df2ac-e411-458c-9bf6-ea992104bf2f": [
+                "05eef983-21a3-46b6-8feb-778eabd1d81c"
+              ],
+              "580c40b5-d358-44cd-a0c8-f1e4c61e9523": [
+                "36e367b7-8e29-4cb9-a42d-86074cffc0e7"
+              ]
+            },
+            "positions": {
+              "523df2ac-e411-458c-9bf6-ea992104bf2f": {
+                "col": 1,
+                "row": 1,
+                "height": 2,
+                "width": "Infinity"
+              },
+              "580c40b5-d358-44cd-a0c8-f1e4c61e9523": {
+                "col": 1,
+                "row": 3,
+                "height": 6,
+                "width": "Infinity"
+              }
+            },
+            "formatting": null,
+            "display_mode_settings": {
+              "positions": {}
+            }
+          }
+        },
+        "properties": [],
+        "owner": "admin",
+        "title": {
+          "@type": "string",
+          "@value": "Web Filter Significant Events"
+        },
+        "type": "SEARCH",
+        "description": {
+          "@type": "string",
+          "@value": ""
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "search",
+        "version": "1"
+      },
+      "id": "73f8ef14-b9db-4d57-a33b-b84b2b89a276",
+      "data": {
+        "summary": {
+          "@type": "string",
+          "@value": ""
+        },
+        "search": {
+          "queries": [
+            {
+              "id": "84c5a03d-6af1-49d0-9f6e-2589acc622ec",
+              "timerange": {
+                "type": "keyword",
+                "keyword": "last monday midnight to today midnight",
+                "timezone": "Etc/UTC"
+              },
+              "query": {
+                "type": "elasticsearch",
+                "query_string": ""
+              },
+              "search_types": [
+                {
+                  "query": null,
+                  "name": null,
+                  "timerange": null,
+                  "offset": 0,
+                  "streams": [],
+                  "filter": null,
+                  "decorators": [],
+                  "type": "messages",
+                  "id": "b86fc08a-20a4-40c6-b866-ef13525aa9d1",
+                  "limit": 150
+                },
+                {
+                  "query": null,
+                  "name": "chart",
+                  "timerange": null,
+                  "streams": [],
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "count()",
+                      "field": null
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [
+                    {
+                      "type": "time",
+                      "field": "timestamp",
+                      "interval": {
+                        "type": "auto",
+                        "scaling": 1
+                      }
+                    }
+                  ],
+                  "type": "pivot",
+                  "id": "035d5914-9e60-456c-aa1f-5d92c01e3efd",
+                  "column_groups": [],
+                  "sort": []
+                }
+              ]
+            }
+          ],
+          "parameters": [],
+          "requires": {},
+          "owner": "admin",
+          "created_at": "2021-11-01T13:05:35.656Z"
+        },
+        "created_at": "2021-11-01T13:05:03.949Z",
+        "requires": {},
+        "state": {
+          "84c5a03d-6af1-49d0-9f6e-2589acc622ec": {
+            "selected_fields": null,
+            "static_message_list_id": null,
+            "titles": {
+              "widget": {
+                "53351ce4-9136-4244-b627-7df13def1b81": "Message Count",
+                "50851a76-2573-48b3-b9df-6be53678323d": "All Messages"
+              }
+            },
+            "widgets": [
+              {
+                "id": "53351ce4-9136-4244-b627-7df13def1b81",
+                "type": "aggregation",
+                "filter": null,
+                "timerange": null,
+                "query": null,
+                "streams": [],
+                "config": {
+                  "visualization": "bar",
+                  "event_annotation": false,
+                  "row_pivots": [
+                    {
+                      "field": "timestamp",
+                      "type": "time",
+                      "config": {
+                        "interval": {
+                          "type": "auto",
+                          "scaling": 1
+                        }
+                      }
+                    }
+                  ],
+                  "series": [
+                    {
+                      "config": {
+                        "name": null
+                      },
+                      "function": "count()"
+                    }
+                  ],
+                  "rollup": true,
+                  "column_pivots": [],
+                  "visualization_config": null,
+                  "formatting_settings": null,
+                  "sort": []
+                }
+              },
+              {
+                "id": "50851a76-2573-48b3-b9df-6be53678323d",
+                "type": "messages",
+                "filter": null,
+                "timerange": null,
+                "query": null,
+                "streams": [],
+                "config": {
+                  "fields": [
+                    "timestamp",
+                    "source"
+                  ],
+                  "show_message_row": true,
+                  "show_summary": null,
+                  "decorators": [],
+                  "sort": [
+                    {
+                      "type": "pivot",
+                      "field": "timestamp",
+                      "direction": "Descending"
+                    }
+                  ]
+                }
+              }
+            ],
+            "widget_mapping": {
+              "53351ce4-9136-4244-b627-7df13def1b81": [
+                "035d5914-9e60-456c-aa1f-5d92c01e3efd"
+              ],
+              "50851a76-2573-48b3-b9df-6be53678323d": [
+                "b86fc08a-20a4-40c6-b866-ef13525aa9d1"
+              ]
+            },
+            "positions": {
+              "53351ce4-9136-4244-b627-7df13def1b81": {
+                "col": 1,
+                "row": 1,
+                "height": 2,
+                "width": "Infinity"
+              },
+              "50851a76-2573-48b3-b9df-6be53678323d": {
+                "col": 1,
+                "row": 3,
+                "height": 6,
+                "width": "Infinity"
+              }
+            },
+            "formatting": null,
+            "display_mode_settings": {
+              "positions": {}
+            }
+          }
+        },
+        "properties": [],
+        "owner": "admin",
+        "title": {
+          "@type": "string",
+          "@value": "Weekly Executive Report"
+        },
+        "type": "SEARCH",
+        "description": {
+          "@type": "string",
+          "@value": ""
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "stream",
+        "version": "1"
+      },
+      "id": "a1340d40-908c-4fc5-afd8-d54ec8142911",
+      "data": {
+        "alarm_callbacks": [],
+        "outputs": [],
+        "remove_matches": {
+          "@type": "boolean",
+          "@value": false
+        },
+        "title": {
+          "@type": "string",
+          "@value": "Threat Intel Stream"
+        },
+        "stream_rules": [],
+        "alert_conditions": [],
+        "matching_type": {
+          "@type": "string",
+          "@value": "AND"
+        },
+        "disabled": {
+          "@type": "boolean",
+          "@value": false
+        },
+        "description": {
+          "@type": "string",
+          "@value": "Perform Threat Intel Lookups"
+        },
+        "default_stream": {
+          "@type": "boolean",
+          "@value": false
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "stream",
+        "version": "1"
+      },
+      "id": "69aac049-f4f0-44d2-b8ea-4fe8534d8962",
+      "data": {
+        "alarm_callbacks": [],
+        "outputs": [],
+        "remove_matches": {
+          "@type": "boolean",
+          "@value": false
+        },
+        "title": {
+          "@type": "string",
+          "@value": "Sophos Firewall Stream"
+        },
+        "stream_rules": [],
+        "alert_conditions": [],
+        "matching_type": {
+          "@type": "string",
+          "@value": "AND"
+        },
+        "disabled": {
+          "@type": "boolean",
+          "@value": false
+        },
+        "description": {
+          "@type": "string",
+          "@value": "Sophos firewall logs"
+        },
+        "default_stream": {
+          "@type": "boolean",
+          "@value": false
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "stream",
+        "version": "1"
+      },
+      "id": "166171b0-203b-4067-94de-12cc3c2909b5",
+      "data": {
+        "alarm_callbacks": [],
+        "outputs": [],
+        "remove_matches": {
+          "@type": "boolean",
+          "@value": false
+        },
+        "title": {
+          "@type": "string",
+          "@value": "Sophos Web Proxy Stream"
+        },
+        "stream_rules": [],
+        "alert_conditions": [],
+        "matching_type": {
+          "@type": "string",
+          "@value": "AND"
+        },
+        "disabled": {
+          "@type": "boolean",
+          "@value": false
+        },
+        "description": {
+          "@type": "string",
+          "@value": "Sophos Web Proxy Logs"
+        },
+        "default_stream": {
+          "@type": "boolean",
+          "@value": false
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.2.0+5adccc3"
+        }
+      ]
+    }
+  ]
+}
